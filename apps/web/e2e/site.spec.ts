@@ -275,6 +275,8 @@ test("the Institute submenu exposes the about page on desktop and mobile", async
     .getByRole("link", { name: "À propos de nous" })
     .click();
   await expect(page).toHaveURL(/\/institut\/a-propos$/);
+  await expect(page.locator(".mobile-menu")).not.toHaveAttribute("open", "");
+  await expect(page.locator(".mobile-menu__panel")).not.toBeVisible();
   await expect(page.locator("h1")).toContainText("À propos de l’Institut");
 });
 

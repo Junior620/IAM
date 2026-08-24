@@ -12,6 +12,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { copy, localizePath, navItems, type Locale } from "@/lib/content";
+import { MobileMenu } from "./mobile-menu";
 import { Container } from "./ui";
 
 function Link(props: ComponentProps<typeof NextLink>) {
@@ -209,64 +210,58 @@ export function Header({ locale }: { locale: Locale }) {
           >
             {t.utility.support}
           </Link>
-          <details className="mobile-menu">
-            <summary>
-              {t.common.menu}
-              <span aria-hidden="true">+</span>
-            </summary>
-            <div className="mobile-menu__panel">
-              <div className="mobile-menu__group">
-                <span>{locale === "fr" ? "L’Institut" : "The Institute"}</span>
-                <Link href={localizePath(locale, "/institut/a-propos")}>
-                  {locale === "fr" ? "À propos de nous" : "About us"}
-                </Link>
-                <Link href={localizePath(locale, "/institut/mission-vision")}>
-                  {locale === "fr" ? "Mission et vision" : "Mission and vision"}
-                </Link>
-                <Link href={localizePath(locale, "/institut/nos-services")}>
-                  {locale === "fr" ? "Nos services" : "Our services"}
-                </Link>
-                <Link href={localizePath(locale, "/institut")}>
-                  {locale === "fr"
-                    ? "L’espace institutionnel"
-                    : "Institutional area"}
-                </Link>
-                <Link href={localizePath(locale, "/institut/notre-approche")}>
-                  {locale === "fr" ? "Notre approche" : "Our approach"}
-                </Link>
-              </div>
-              <div className="mobile-menu__group">
-                <span>
-                  {locale === "fr" ? "Actualités & médias" : "News & media"}
-                </span>
-                <Link href={localizePath(locale, "/actualites-medias")}>
-                  {locale === "fr" ? "Toutes les actualités" : "All news"}
-                </Link>
-                <Link href={localizePath(locale, "/actualites-medias/galerie")}>
-                  {locale === "fr"
-                    ? "Galerie & photothèque"
-                    : "Gallery & photo library"}
-                </Link>
-              </div>
-              {navItems
-                .filter(
-                  (item) =>
-                    item.path !== "/institut" &&
-                    item.path !== "/actualites-medias",
-                )
-                .map((item) => (
-                  <Link key={item.path} href={localizePath(locale, item.path)}>
-                    {item[locale]}
-                  </Link>
-                ))}
-              <Link href={localizePath(locale, "/partenariats")}>
-                {t.hero.partner}
+          <MobileMenu label={t.common.menu}>
+            <div className="mobile-menu__group">
+              <span>{locale === "fr" ? "L’Institut" : "The Institute"}</span>
+              <Link href={localizePath(locale, "/institut/a-propos")}>
+                {locale === "fr" ? "À propos de nous" : "About us"}
               </Link>
-              <Link href={localizePath(locale, "/contact")}>
-                {t.utility.contact}
+              <Link href={localizePath(locale, "/institut/mission-vision")}>
+                {locale === "fr" ? "Mission et vision" : "Mission and vision"}
+              </Link>
+              <Link href={localizePath(locale, "/institut/nos-services")}>
+                {locale === "fr" ? "Nos services" : "Our services"}
+              </Link>
+              <Link href={localizePath(locale, "/institut")}>
+                {locale === "fr"
+                  ? "L’espace institutionnel"
+                  : "Institutional area"}
+              </Link>
+              <Link href={localizePath(locale, "/institut/notre-approche")}>
+                {locale === "fr" ? "Notre approche" : "Our approach"}
               </Link>
             </div>
-          </details>
+            <div className="mobile-menu__group">
+              <span>
+                {locale === "fr" ? "Actualités & médias" : "News & media"}
+              </span>
+              <Link href={localizePath(locale, "/actualites-medias")}>
+                {locale === "fr" ? "Toutes les actualités" : "All news"}
+              </Link>
+              <Link href={localizePath(locale, "/actualites-medias/galerie")}>
+                {locale === "fr"
+                  ? "Galerie & photothèque"
+                  : "Gallery & photo library"}
+              </Link>
+            </div>
+            {navItems
+              .filter(
+                (item) =>
+                  item.path !== "/institut" &&
+                  item.path !== "/actualites-medias",
+              )
+              .map((item) => (
+                <Link key={item.path} href={localizePath(locale, item.path)}>
+                  {item[locale]}
+                </Link>
+              ))}
+            <Link href={localizePath(locale, "/partenariats")}>
+              {t.hero.partner}
+            </Link>
+            <Link href={localizePath(locale, "/contact")}>
+              {t.utility.contact}
+            </Link>
+          </MobileMenu>
         </Container>
       </header>
     </>
