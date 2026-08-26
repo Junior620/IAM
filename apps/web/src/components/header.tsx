@@ -248,7 +248,8 @@ export function Header({ locale }: { locale: Locale }) {
               .filter(
                 (item) =>
                   item.path !== "/institut" &&
-                  item.path !== "/actualites-medias",
+                  item.path !== "/actualites-medias" &&
+                  item.path !== "/partenariats",
               )
               .map((item) => (
                 <Link key={item.path} href={localizePath(locale, item.path)}>

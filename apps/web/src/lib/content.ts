@@ -308,6 +308,7 @@ export const navItems = [
   { fr: "Priorités", en: "Priorities", path: "/priorites" },
   { fr: "Académie", en: "Academy", path: "/academie" },
   { fr: "Participer", en: "Get involved", path: "/participer" },
+  { fr: "Partenariats", en: "Partnerships", path: "/partenariats" },
   { fr: "Actualités & médias", en: "News & media", path: "/actualites-medias" },
 ] as const;
 
