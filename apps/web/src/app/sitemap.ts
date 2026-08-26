@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { legalPagePaths } from "@/components/legal-page";
 import { pageEntries, pillars, programmes } from "@/lib/content";
 import { getSanityClient } from "@/sanity/lib/client";
 import { settingsQuery } from "@/sanity/lib/queries";
@@ -12,10 +13,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/alertes",
     "/recherche",
     "/newsletter",
-    "/accessibilite",
     "/institut/a-propos",
     "/institut/notre-approche",
     "/actualites-medias/galerie",
+    ...legalPagePaths,
     ...pageEntries.map((item) => item.path),
     ...pillars.map((item) => `/priorites/${item.slug}`),
     ...programmes.map((item) => item.path),

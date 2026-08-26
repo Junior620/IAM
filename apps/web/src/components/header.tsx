@@ -385,9 +385,6 @@ export function Footer({ locale }: { locale: Locale }) {
             <Link href={localizePath(locale, "/institut")}>
               {locale === "fr" ? "Transparence" : "Transparency"}
             </Link>
-            <Link href={localizePath(locale, "/accessibilite")}>
-              {locale === "fr" ? "Accessibilité" : "Accessibility"}
-            </Link>
           </div>
           <div>
             <h2>{locale === "fr" ? "À savoir" : "Important"}</h2>
@@ -398,12 +395,48 @@ export function Footer({ locale }: { locale: Locale }) {
             </p>
           </div>
         </div>
+        <nav
+          className="footer__legal"
+          aria-labelledby={`footer-legal-${locale}`}
+        >
+          <h2 id={`footer-legal-${locale}`}>
+            {locale === "fr" ? "Informations légales" : "Legal information"}
+          </h2>
+          <div>
+            <Link href={localizePath(locale, "/mentions-legales")}>
+              {locale === "fr" ? "Mentions légales" : "Legal notice"}
+            </Link>
+            <Link href={localizePath(locale, "/confidentialite")}>
+              {locale === "fr"
+                ? "Politique de confidentialité"
+                : "Privacy policy"}
+            </Link>
+            <Link href={localizePath(locale, "/cookies")}>
+              {locale === "fr" ? "Politique de cookies" : "Cookie policy"}
+            </Link>
+            <Link href={localizePath(locale, "/conditions-utilisation")}>
+              {locale === "fr" ? "Conditions d’utilisation" : "Terms of use"}
+            </Link>
+            <Link href={localizePath(locale, "/avertissement-medical")}>
+              {locale === "fr" ? "Avertissement médical" : "Medical disclaimer"}
+            </Link>
+            <Link href={`${localizePath(locale, "/cookies")}#gestion`}>
+              {locale === "fr" ? "Gérer mes cookies" : "Manage my cookies"}
+            </Link>
+            <Link href={localizePath(locale, "/accessibilite")}>
+              {locale === "fr" ? "Accessibilité" : "Accessibility"}
+            </Link>
+            <Link href={localizePath(locale, "/contact")}>
+              {locale === "fr" ? "Contact" : "Contact"}
+            </Link>
+          </div>
+        </nav>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} IAM</span>
           <span>
             {locale === "fr"
-              ? "Données vérifiées · Confidentialité · Mentions légales"
-              : "Verified data · Privacy · Legal information"}
+              ? "Données vérifiées · Information médicale responsable"
+              : "Verified data · Responsible medical information"}
           </span>
         </div>
       </Container>

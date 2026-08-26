@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { localizePath, type Locale } from "@/lib/content";
+import { MedicalDisclaimer } from "./medical-disclaimer";
 import { ButtonLink, Container } from "./ui";
 
 type Service = {
@@ -458,6 +459,12 @@ export function ServicesPage({ locale }: { locale: Locale }) {
               <span>{t.heroLabel}</span>
             </div>
           </div>
+        </Container>
+      </section>
+
+      <section className="medical-disclaimer-section">
+        <Container>
+          <MedicalDisclaimer locale={locale} />
         </Container>
       </section>
 

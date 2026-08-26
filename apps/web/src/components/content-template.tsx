@@ -1,5 +1,6 @@
 import type { Locale } from "@iam/contracts";
 import { EmptyState, VerifiedState } from "./feedback";
+import { MedicalDisclaimer } from "./medical-disclaimer";
 import { Container } from "./ui";
 
 export type TemplateKind =
@@ -23,6 +24,7 @@ export type TemplateDocument = {
   summary: string;
   verifiedAt?: string;
   sourceTitle?: string;
+  sourceUrl?: string;
   body?: React.ReactNode;
 };
 
@@ -45,6 +47,20 @@ export function ContentTemplate({
   document: TemplateDocument;
 }) {
   const heroVariant = heroVariantForKind(document.kind);
+  const safeSourceUrl =
+    document.sourceUrl && /^https?:\/\//i.test(document.sourceUrl)
+      ? document.sourceUrl
+      : undefined;
+  const carriesMedicalInformation = [
+    "pillar",
+    "program",
+    "project",
+    "publication",
+    "news",
+    "event",
+    "course",
+    "alert",
+  ].includes(document.kind);
 
   return (
     <main id="contenu">
@@ -59,11 +75,21 @@ export function ContentTemplate({
       </section>
       <section className="section">
         <Container className="narrow">
+          {carriesMedicalInformation ? (
+            <MedicalDisclaimer locale={locale} />
+          ) : null}
           {document.verifiedAt && document.sourceTitle ? (
             <VerifiedState>
               {locale === "fr"
-                ? `Vérifié le ${document.verifiedAt} · ${document.sourceTitle}`
-                : `Verified on ${document.verifiedAt} · ${document.sourceTitle}`}
+                ? `Vérifié le ${document.verifiedAt} · `
+                : `Verified on ${document.verifiedAt} · `}
+              {safeSourceUrl ? (
+                <a href={safeSourceUrl} rel="noreferrer" target="_blank">
+                  {document.sourceTitle}
+                </a>
+              ) : (
+                document.sourceTitle
+              )}
             </VerifiedState>
           ) : null}
           {document.body ? (

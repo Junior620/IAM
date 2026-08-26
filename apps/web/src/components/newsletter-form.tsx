@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, LoaderCircle } from "lucide-react";
-import type { Locale } from "@/lib/content";
+import { localizePath, type Locale } from "@/lib/content";
 import { TurnstileField } from "./turnstile";
 
 const topics = {
@@ -153,6 +154,14 @@ export function NewsletterForm({
       {compact && (
         <input type="hidden" name="interests" value="institutional" />
       )}
+      <p className="form-privacy-note">
+        {locale === "fr"
+          ? "L’adresse est utilisée par Resend pour envoyer la confirmation et les thèmes sélectionnés. L’inscription n’est activée qu’après confirmation par e-mail."
+          : "The address is used through Resend to send confirmation and selected topics. Subscription is only activated after email confirmation."}{" "}
+        <Link href={localizePath(locale, "/confidentialite")}>
+          {locale === "fr" ? "Politique de confidentialité" : "Privacy policy"}
+        </Link>
+      </p>
       <label className="consent">
         <input type="checkbox" name="consent" required />
         <span>

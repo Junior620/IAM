@@ -1,3 +1,4 @@
+import { createHmac } from "node:crypto";
 import { Ratelimit } from "@upstash/ratelimit";
 import type { RateLimiter } from "@iam/contracts";
 import { getRedis } from "./redis";
@@ -22,5 +23,12 @@ export function requestFingerprint(request: Request) {
     .get("x-forwarded-for")
     ?.split(",")[0]
     ?.trim();
-  return forwarded || request.headers.get("cf-connecting-ip") || "anonymous";
+  const address =
+    forwarded || request.headers.get("cf-connecting-ip") || "anonymous";
+  const secret = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!secret) return "anonymous";
+  return createHmac("sha256", secret)
+    .update("iam:forms:v1:")
+    .update(address)
+    .digest("hex");
 }

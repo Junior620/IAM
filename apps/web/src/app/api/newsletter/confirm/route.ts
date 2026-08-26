@@ -17,20 +17,31 @@ function confirmationUrl(
   return `${getSiteUrl()}${path}?state=${state}`;
 }
 
+function privateRedirect(location: string) {
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: location,
+      "Cache-Control": "private, no-store, max-age=0",
+      "Referrer-Policy": "no-referrer",
+    },
+  });
+}
+
 export async function GET(request: Request) {
   const token = new URL(request.url).searchParams.get("token");
   if (!token || token.length > 100)
-    return Response.redirect(confirmationUrl("fr", "invalid"));
+    return privateRedirect(confirmationUrl("fr", "invalid"));
 
   const redis = getRedis();
   const resend = getResend();
   const from = process.env.RESEND_FROM_EMAIL;
   if (!redis || !resend || !from)
-    return Response.redirect(confirmationUrl("fr", "unavailable"));
+    return privateRedirect(confirmationUrl("fr", "unavailable"));
 
   const key = `iam:newsletter:pending:${token}`;
   const pending = await redis.get<PendingSubscription>(key);
-  if (!pending) return Response.redirect(confirmationUrl("fr", "invalid"));
+  if (!pending) return privateRedirect(confirmationUrl("fr", "invalid"));
 
   const topics = resendTopics(pending.interests);
   const created = await resend.contacts.create({
@@ -58,7 +69,7 @@ export async function GET(request: Request) {
       },
     });
     if (updated.error)
-      return Response.redirect(confirmationUrl(pending.locale, "unavailable"));
+      return privateRedirect(confirmationUrl(pending.locale, "unavailable"));
     if (topics.length)
       await resend.contacts.topics.update({ email: pending.email, topics });
   }
@@ -91,5 +102,5 @@ export async function GET(request: Request) {
       actionUrl: `${getSiteUrl()}${preferencesPath}?token=${encodeURIComponent(preferenceToken)}`,
     }),
   });
-  return Response.redirect(confirmationUrl(pending.locale, "success"));
+  return privateRedirect(confirmationUrl(pending.locale, "success"));
 }

@@ -21,6 +21,15 @@ describe("Footer", () => {
     ).toHaveAttribute("href", "mailto:institutafricaindumedicament@gmail.com");
     expect(screen.getByText("RC DLA / 2017 / B / 71")).toBeInTheDocument();
     expect(screen.getByText(/M011712585175S/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Informations légales" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Politique de confidentialité" }),
+    ).toHaveAttribute("href", "/confidentialite");
+    expect(
+      screen.getByRole("link", { name: "Gérer mes cookies" }),
+    ).toHaveAttribute("href", "/cookies#gestion");
   });
 
   it("localises contact labels in English", () => {
@@ -31,5 +40,8 @@ describe("Footer", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/P\.O\. Box 5426/)).toBeInTheDocument();
     expect(screen.getByText(/Taxpayer/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Medical disclaimer" }),
+    ).toHaveAttribute("href", "/en/avertissement-medical");
   });
 });

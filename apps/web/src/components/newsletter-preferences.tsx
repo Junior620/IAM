@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import { localizePath } from "@/lib/content";
 
 const labels = {
   fr: [
@@ -98,6 +100,11 @@ export function NewsletterPreferences({
           {english ? "Unsubscribe" : "Se désabonner"}
         </button>
       </div>
+      <p className="preference-form__privacy">
+        <Link href={localizePath(locale, "/confidentialite")}>
+          {english ? "Privacy policy" : "Politique de confidentialité"}
+        </Link>
+      </p>
       <p aria-live="polite">
         {state === "saved"
           ? english

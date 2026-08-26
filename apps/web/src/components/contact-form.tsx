@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, LoaderCircle } from "lucide-react";
-import type { Locale } from "@/lib/content";
+import { localizePath, type Locale } from "@/lib/content";
 import { TurnstileField } from "./turnstile";
 
 export function ContactForm({
@@ -95,12 +96,33 @@ export function ContactForm({
           <textarea name="message" required minLength={20} rows={7} />
         </label>
       </div>
+      <aside
+        className="form-privacy-note"
+        aria-label={locale === "fr" ? "Confidentialité" : "Privacy"}
+      >
+        <p>
+          {locale === "fr"
+            ? "Les informations transmises sont utilisées uniquement pour traiter votre demande."
+            : "The information submitted is used only to process your request."}{" "}
+          <Link href={localizePath(locale, "/confidentialite")}>
+            {locale === "fr"
+              ? "Consultez notre Politique de confidentialité."
+              : "Read our Privacy policy."}
+          </Link>
+        </p>
+        <p>
+          <strong>{locale === "fr" ? "Important :" : "Important:"}</strong>{" "}
+          {locale === "fr"
+            ? "ne transmettez aucune donnée de santé, information sur un patient, médicament utilisé, symptôme, effet indésirable ou urgence. Ce formulaire ne fournit pas d’avis médical et n’est pas un canal de pharmacovigilance."
+            : "do not submit health data, patient information, medicines used, symptoms, adverse events or emergencies. This form does not provide medical advice and is not a pharmacovigilance channel."}
+        </p>
+      </aside>
       <label className="consent">
         <input type="checkbox" name="consent" required />
         <span>
           {locale === "fr"
-            ? "J’accepte que mes informations soient utilisées uniquement pour traiter cette demande."
-            : "I agree that my information may be used solely to process this request."}
+            ? "Je confirme avoir lu cette information avant d’envoyer ma demande."
+            : "I confirm that I have read this information before sending my request."}
         </span>
       </label>
       <label className="honeypot" aria-hidden="true">

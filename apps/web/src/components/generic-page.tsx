@@ -4,6 +4,7 @@ import type { Locale, PageEntry } from "@/lib/content";
 import { copy, localizePath, pillars, programmes } from "@/lib/content";
 import { ContactForm } from "./contact-form";
 import { NewsletterForm } from "./newsletter-form";
+import { MedicalDisclaimer } from "./medical-disclaimer";
 import { ButtonLink, Checklist, Container } from "./ui";
 
 type PageHeroVariant =
@@ -84,6 +85,9 @@ export function GenericPage({
         <Container className="page-content__grid">
           <article>
             <p className="lead text-justify">{data.intro}</p>
+            {entry.path === "/priorites" ? (
+              <MedicalDisclaimer locale={locale} />
+            ) : null}
             <Checklist items={data.bullets} />
             {entry.path === "/institut" && (
               <ButtonLink
@@ -261,6 +265,7 @@ export function DetailPage({
       </section>
       <section className="detail-content section">
         <Container>
+          <MedicalDisclaimer locale={locale} />
           <div className="detail-empty">
             <BadgeCheck aria-hidden="true" />
             <h2>

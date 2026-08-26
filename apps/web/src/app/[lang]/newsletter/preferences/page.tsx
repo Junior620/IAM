@@ -1,6 +1,7 @@
 import { NewsletterPreferences } from "@/components/newsletter-preferences";
 import { getLocaleFromLang } from "@/lib/content";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default async function NewsletterPreferencesPage({
   params: Promise<{ lang: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  await connection();
   const [{ lang }, query] = await Promise.all([params, searchParams]);
   const locale = getLocaleFromLang(lang);
   const token = typeof query.token === "string" ? query.token : "";

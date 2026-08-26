@@ -14,6 +14,11 @@ import { GalleryPage } from "@/components/gallery-page";
 import { MissionVisionPage } from "@/components/mission-vision-page";
 import { ServicesPage } from "@/components/services-page";
 import {
+  getLegalPageMetadata,
+  isLegalPagePath,
+  LegalPage,
+} from "@/components/legal-page";
+import {
   DetailPage,
   GenericPage,
   NewsletterPage,
@@ -101,19 +106,25 @@ export async function generateMetadata({
   const locale = getLocaleFromLang(values.lang);
   if (!locale) return {};
   const result = resolve(locale, values.slug);
-  const cmsRecord = result.entry
-    ? null
-    : await new SanityContentRepository().getBySlug(
-        values.slug.at(-1) ?? "",
-        locale,
-      );
+  const legalMetadata = isLegalPagePath(result.path)
+    ? getLegalPageMetadata(result.path, locale)
+    : null;
+  const cmsRecord =
+    result.entry || legalMetadata
+      ? null
+      : await new SanityContentRepository().getBySlug(
+          values.slug.at(-1) ?? "",
+          locale,
+        );
   const title =
+    legalMetadata?.title ??
     result.entry?.[locale].title ??
     cmsRecord?.title ??
     (locale === "fr"
       ? "IAM — Information pharmaceutique"
       : "IAM — Pharmaceutical information");
   const description =
+    legalMetadata?.description ??
     result.entry?.[locale].summary ??
     cmsRecord?.summary ??
     (locale === "fr"
@@ -184,6 +195,9 @@ export default async function Page({
   const locale = getLocaleFromLang(values.lang);
   if (!locale) notFound();
   const result = resolve(locale, values.slug);
+  if (isLegalPagePath(result.path)) {
+    return <LegalPage locale={locale} path={result.path} />;
+  }
   if (result.path === "/newsletter") return <NewsletterPage locale={locale} />;
   if (result.path === "/institut/a-propos")
     return <AboutPage locale={locale} />;
@@ -226,6 +240,7 @@ export default async function Page({
           : "Content approved and published by the African Medicines Institute."),
       ...(record.verifiedAt ? { verifiedAt: record.verifiedAt } : {}),
       ...(record.sourceTitle ? { sourceTitle: record.sourceTitle } : {}),
+      ...(record.sourceUrl ? { sourceUrl: record.sourceUrl } : {}),
       ...(body ? { body } : {}),
     };
     return <ContentTemplate locale={locale} document={document} />;
