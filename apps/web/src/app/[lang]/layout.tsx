@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { Footer, Header } from "@/components/header";
+import { CookieConsent } from "@/components/cookie-consent";
 import { getLocaleFromLang } from "@/lib/content";
 import { sanityConfigured } from "@/sanity/lib/client";
 import "../globals.css";
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Institut Africain du Médicament — science, données et accès",
+        alt: "Institut Africain du Médicament, science, données et accès",
       },
     ],
   },
@@ -117,6 +118,7 @@ export default async function LocaleLayout({
         <Header locale={locale} />
         {children}
         <Footer locale={locale} />
+        <CookieConsent locale={locale} />
         {VisualEditing ? <VisualEditing /> : null}
       </body>
     </html>

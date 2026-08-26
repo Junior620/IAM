@@ -24,8 +24,8 @@ export function Brand({ locale }: { locale: Locale }) {
     <Link
       aria-label={
         locale === "fr"
-          ? "Institut Africain du Médicament — accueil"
-          : "African Institute of Medicine — home"
+          ? "Institut Africain du Médicament, accueil"
+          : "African Institute of Medicine, home"
       }
       className="brand"
       href={localizePath(locale, "/")}
@@ -303,8 +303,8 @@ export function Footer({ locale }: { locale: Locale }) {
                 <h3>{locale === "fr" ? "Adresse" : "Address"}</h3>
                 <address>
                   {locale === "fr"
-                    ? "Bonamoussadi, Bloc 24, en face de la Perception, Douala — Cameroun"
-                    : "Bonamoussadi, Block 24, opposite the Tax Office, Douala — Cameroon"}
+                    ? "Bonamoussadi, Bloc 24, en face de la Perception, Douala, Cameroun"
+                    : "Bonamoussadi, Block 24, opposite the Tax Office, Douala, Cameroon"}
                 </address>
                 <p>
                   {locale === "fr"

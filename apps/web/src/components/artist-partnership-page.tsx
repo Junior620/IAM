@@ -62,7 +62,7 @@ const content = {
     donationIntro:
       "Anna Snijder s’engage à reverser à l’Institut Africain du Médicament, au Cameroun, un pourcentage fixe du produit de la vente de chacune de ses œuvres et commandes artistiques.",
     quote:
-      "Parce que je crois que l’accès à des soins de santé et à des médicaments sûrs est un droit humain fondamental, je reverse un pourcentage fixe du produit de la vente de chaque œuvre — qu’il s’agisse d’œuvres libres ou de commandes — directement à l’Institut Africain du Médicament (IAM) au Cameroun.",
+      "Parce que je crois que l’accès à des soins de santé et à des médicaments sûrs est un droit humain fondamental, je reverse un pourcentage fixe du produit de chaque vente directement à l’Institut Africain du Médicament (IAM) au Cameroun, qu’il s’agisse d’œuvres libres ou de commandes.",
     percentageNote:
       "Le pourcentage contractuel exact n’est pas affiché publiquement.",
     representationEyebrow: "Représentation & collections",
@@ -86,7 +86,7 @@ const content = {
     iamEyebrow: "Référence institutionnelle",
     founder: "Fondateur : Dr Didier Mouliom",
     iamAddress:
-      "Bonamoussadi, Bloc 24, en face de la Perception, Douala — Cameroun",
+      "Bonamoussadi, Bloc 24, en face de la Perception, Douala, Cameroun",
     postOffice: "Boîte postale : 5426 Douala, Cameroun",
     iamLink: "Découvrir l’Institut Africain du Médicament",
   },
@@ -128,7 +128,7 @@ const content = {
     donationIntro:
       "Anna Snijder is committed to donating a fixed percentage of the proceeds from every artwork and commissioned piece to the African Institute of Medicine in Cameroon.",
     quote:
-      "Because I believe that access to healthcare and safe medicines is a fundamental human right, I donate a fixed percentage of the proceeds from every work — whether an independent artwork or a commission — directly to the African Institute of Medicine (IAM) in Cameroon.",
+      "Because I believe that access to healthcare and safe medicines is a fundamental human right, I donate a fixed percentage of every sale directly to the African Institute of Medicine (IAM) in Cameroon, whether it is an independent artwork or a commission.",
     percentageNote:
       "The exact contractual percentage is not displayed publicly.",
     representationEyebrow: "Representation & collections",
@@ -149,7 +149,7 @@ const content = {
     iamEyebrow: "Institutional reference",
     founder: "Founder: Dr Didier Mouliom",
     iamAddress:
-      "Bonamoussadi, Block 24, opposite the Tax Office, Douala — Cameroon",
+      "Bonamoussadi, Block 24, opposite the Tax Office, Douala, Cameroon",
     postOffice: "P.O. Box 5426, Douala, Cameroon",
     iamLink: "Discover the African Institute of Medicine",
   },
@@ -301,7 +301,7 @@ export function ArtistPartnershipPage({ locale }: { locale: Locale }) {
           <blockquote>
             <Quote aria-hidden="true" />
             <p>“{t.quote}”</p>
-            <footer>— Anna Snijder</footer>
+            <footer>Anna Snijder</footer>
             <small>{t.percentageNote}</small>
           </blockquote>
         </Container>

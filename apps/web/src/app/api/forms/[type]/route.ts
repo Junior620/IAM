@@ -86,7 +86,7 @@ export async function POST(
         to: recipient,
         replyTo: data.email,
         subject:
-          `[IAM] ${typeResult.data} — ${data.firstName} ${data.lastName ?? ""}`.trim(),
+          `[IAM] ${typeResult.data}: ${data.firstName} ${data.lastName ?? ""}`.trim(),
         html: `<h1>Nouveau message IAM</h1><p><strong>Type :</strong> ${escapeHtml(typeResult.data)}</p><p><strong>Nom :</strong> ${escapeHtml(`${data.firstName} ${data.lastName ?? ""}`)}</p><p><strong>Email :</strong> ${escapeHtml(data.email)}</p><p><strong>Pays :</strong> ${escapeHtml(data.country)}</p><p><strong>Organisation :</strong> ${escapeHtml(data.organization ?? "")}</p><p><strong>Message :</strong><br>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p><p>Consentement reçu via le formulaire IAM.</p>`,
       }),
       mail.sendTransactional({

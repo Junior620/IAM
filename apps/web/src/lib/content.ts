@@ -131,7 +131,7 @@ export const copy: Record<Locale, Copy> = {
         eyebrow: "Présence africaine",
         title: "Une lecture continentale, des réalités nationales.",
         summary:
-          "Chaque présence est reliée à un programme, un partenaire et une source — jamais à une simple affirmation de couverture.",
+          "Chaque présence est reliée à un programme, un partenaire et une source, jamais à une simple affirmation de couverture.",
       },
       science: {
         eyebrow: "Science & pharmacopée",
@@ -242,7 +242,7 @@ export const copy: Record<Locale, Copy> = {
         eyebrow: "African presence",
         title: "A continental view, grounded nationally.",
         summary:
-          "Each public presence links to a programme, a partner and a source — never a broad unsupported claim.",
+          "Each public presence links to a programme, a partner and a source, never to a broad unsupported claim.",
       },
       science: {
         eyebrow: "Science & pharmacopoeia",
@@ -578,7 +578,7 @@ export const pageEntries: PageEntry[] = [
       eyebrow: "À propos de nous",
       title: "À propos de l’Institut Africain du Médicament",
       summary:
-        "L’Institut Africain du Médicament – Quality of Life (IAM-QoL) a été créé en 2008 afin de former les professionnels de santé et d’informer le grand public.",
+        "L’Institut Africain du Médicament - Quality of Life (IAM-QoL) a été créé en 2008 afin de former les professionnels de santé et d’informer le grand public.",
       intro:
         "L’IAM crée des passerelles entre les expertises et les institutions afin de transformer la connaissance en action utile.",
       bullets: ["Science", "Accès", "Coopération", "Compétences"],
@@ -587,7 +587,7 @@ export const pageEntries: PageEntry[] = [
       eyebrow: "About us",
       title: "About the African Institute of Medicine",
       summary:
-        "The African Institute of Medicine – Quality of Life (IAM-QoL) was established in 2008 to train health professionals and inform the public.",
+        "The African Institute of Medicine - Quality of Life (IAM-QoL) was established in 2008 to train health professionals and inform the public.",
       intro:
         "IAM builds bridges between expertise and institutions to turn knowledge into useful action.",
       bullets: ["Science", "Access", "Cooperation", "Capabilities"],
@@ -672,7 +672,7 @@ export const pageEntries: PageEntry[] = [
     icon: BookOpenCheck,
     fr: {
       eyebrow: "Académie IAM",
-      title: "Nos formations — Académie IAM",
+      title: "Nos formations, Académie IAM",
       summary:
         "Des parcours construits autour des besoins des professionnels, des institutions et des acteurs de terrain.",
       intro:
@@ -687,7 +687,7 @@ export const pageEntries: PageEntry[] = [
     },
     en: {
       eyebrow: "IAM Academy",
-      title: "Our training programmes — IAM Academy",
+      title: "Our training programmes, IAM Academy",
       summary:
         "Learning pathways designed around the needs of professionals, institutions and field stakeholders.",
       intro:
@@ -836,7 +836,7 @@ export const pageEntries: PageEntry[] = [
     icon: Palette,
     fr: {
       eyebrow: "Collaboration artistique",
-      title: "Anna Snijder — Artiste plasticienne internationale",
+      title: "Anna Snijder, artiste plasticienne internationale",
       summary:
         "Une collaboration entre création artistique, santé et impact social au service de la mission de l’IAM.",
       intro:
@@ -850,7 +850,7 @@ export const pageEntries: PageEntry[] = [
     },
     en: {
       eyebrow: "Artistic collaboration",
-      title: "Anna Snijder — International visual artist",
+      title: "Anna Snijder, international visual artist",
       summary:
         "A collaboration connecting artistic creation, health and social impact in support of IAM’s mission.",
       intro:

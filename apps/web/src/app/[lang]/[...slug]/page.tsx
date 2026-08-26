@@ -121,8 +121,8 @@ export async function generateMetadata({
     result.entry?.[locale].title ??
     cmsRecord?.title ??
     (locale === "fr"
-      ? "IAM — Information pharmaceutique"
-      : "IAM — Pharmaceutical information");
+      ? "IAM, Information pharmaceutique"
+      : "IAM, Pharmaceutical information");
   const description =
     legalMetadata?.description ??
     result.entry?.[locale].summary ??

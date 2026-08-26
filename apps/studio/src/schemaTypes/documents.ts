@@ -161,7 +161,7 @@ function documentType(options: DocumentOptions): SchemaTypeDefinition {
       },
       prepare: ({ title, language, status }) => ({
         title,
-        subtitle: `${String(language ?? "—").toUpperCase()} · ${status ?? "draft"}`,
+        subtitle: `${String(language ?? "-").toUpperCase()} · ${status ?? "draft"}`,
       }),
     },
   });

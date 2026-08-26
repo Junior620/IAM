@@ -64,7 +64,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           id: "editeur",
           title: "Éditeur du site",
           paragraphs: [
-            "Le présent site est édité par l’Institut Africain du Médicament (IAM), établi à Bonamoussadi, Bloc 24, en face de la Perception, Douala, Cameroun — BP 5426 Douala.",
+            "Le présent site est édité par l’Institut Africain du Médicament (IAM), établi à Bonamoussadi, Bloc 24, en face de la Perception, Douala, Cameroun, BP 5426 Douala.",
           ],
           bullets: [
             "Forme juridique et statut exact : " + incompleteFr,
@@ -162,7 +162,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           id: "publisher",
           title: "Website publisher",
           paragraphs: [
-            "This website is published by the African Institute of Medicine (IAM), located in Bonamoussadi, Block 24, opposite the Perception office, Douala, Cameroon — P.O. Box 5426 Douala.",
+            "This website is published by the African Institute of Medicine (IAM), located in Bonamoussadi, Block 24, opposite the Perception office, Douala, Cameroon, P.O. Box 5426 Douala.",
           ],
           bullets: [
             "Exact legal form and status: " + incompleteEn,
@@ -295,7 +295,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           id: "finalites",
           title: "Finalités et fondements",
           bullets: [
-            "Répondre aux demandes et assurer leur suivi : mesures précontractuelles, mission institutionnelle ou intérêt légitime selon le contexte — qualification juridique à valider.",
+            "Répondre aux demandes et assurer leur suivi : mesures précontractuelles, mission institutionnelle ou intérêt légitime selon le contexte. Cette qualification juridique reste à valider.",
             "Envoyer la newsletter sélectionnée : consentement explicite, confirmé par double opt-in et retirable à tout moment.",
             "Sécuriser le site, prévenir le spam et limiter les abus : intérêt légitime et sécurité du service, sous réserve du droit applicable.",
             "Respecter les obligations légales ou réglementaires applicables à l’IAM.",
@@ -316,23 +316,23 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           ],
           links: [
             {
-              label: "Vercel — Data Processing Addendum",
+              label: "Vercel, Data Processing Addendum",
               href: "https://vercel.com/legal/dpa",
             },
             {
-              label: "Resend — Data Processing Addendum",
+              label: "Resend, Data Processing Addendum",
               href: "https://resend.com/legal/dpa",
             },
             {
-              label: "Sanity — Data Processing Addendum",
+              label: "Sanity, Data Processing Addendum",
               href: "https://www.sanity.io/legal/dpa",
             },
             {
-              label: "Upstash — Data Processing Addendum",
+              label: "Upstash, Data Processing Addendum",
               href: "https://upstash.com/trust/dpa.pdf",
             },
             {
-              label: "Cloudflare Turnstile — documentation",
+              label: "Documentation Cloudflare Turnstile",
               href: "https://developers.cloudflare.com/turnstile/",
             },
           ],
@@ -395,12 +395,11 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           ],
           links: [
             {
-              label: "Texte officiel camerounais — Présidence de la République",
+              label: "Texte officiel camerounais, Présidence de la République",
               href: "https://www.prc.cm/files/2b/9f/21/1055fa3c2251b4c4248fd301f584daaf.pdf",
             },
             {
-              label:
-                "Règlement général sur la protection des données — EUR-Lex",
+              label: "Règlement général sur la protection des données, EUR-Lex",
               href: "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679",
             },
           ],
@@ -454,7 +453,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           id: "purposes",
           title: "Purposes and legal grounds",
           bullets: [
-            "Responding to and following up requests: pre-contractual steps, institutional mission or legitimate interests depending on context — legal qualification to be reviewed.",
+            "Responding to and following up requests: pre-contractual steps, institutional mission or legitimate interests depending on context. The legal qualification remains to be reviewed.",
             "Sending the selected newsletter: explicit consent confirmed by double opt-in and withdrawable at any time.",
             "Securing the website, preventing spam and limiting abuse: legitimate interests and service security, subject to applicable law.",
             "Complying with legal or regulatory duties applicable to IAM.",
@@ -475,19 +474,19 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           ],
           links: [
             {
-              label: "Vercel — Data Processing Addendum",
+              label: "Vercel, Data Processing Addendum",
               href: "https://vercel.com/legal/dpa",
             },
             {
-              label: "Resend — Data Processing Addendum",
+              label: "Resend, Data Processing Addendum",
               href: "https://resend.com/legal/dpa",
             },
             {
-              label: "Sanity — Data Processing Addendum",
+              label: "Sanity, Data Processing Addendum",
               href: "https://www.sanity.io/legal/dpa",
             },
             {
-              label: "Upstash — Data Processing Addendum",
+              label: "Upstash, Data Processing Addendum",
               href: "https://upstash.com/trust/dpa.pdf",
             },
             {
@@ -554,11 +553,11 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           ],
           links: [
             {
-              label: "Official Cameroon text — Presidency of the Republic",
+              label: "Official Cameroon text, Presidency of the Republic",
               href: "https://www.prc.cm/files/9b/df/2c/e818fedc7d5568778f884ea2886bea7d.pdf",
             },
             {
-              label: "General Data Protection Regulation — EUR-Lex",
+              label: "General Data Protection Regulation, EUR-Lex",
               href: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679",
             },
           ],
@@ -587,7 +586,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           title: "Résultat de l’audit du site",
           paragraphs: [
             "Aucun Google Analytics, Google Tag Manager, Meta Pixel, outil publicitaire, lecteur vidéo tiers, carte interactive ou widget social n’a été détecté dans le code public audité.",
-            "Aucun cookie statistique, de préférence ou de marketing propre au site n’est actuellement configuré. Un bandeau proposant d’accepter des catégories inexistantes serait donc trompeur et n’est pas affiché.",
+            "Aucun cookie statistique ou publicitaire propre au site n’est actuellement configuré. Le bandeau permet néanmoins au visiteur d’anticiper ses préférences et bloque par défaut toute future catégorie optionnelle.",
           ],
         },
         {
@@ -597,6 +596,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Cloudflare Turnstile est chargé uniquement sur les pages comportant un formulaire lorsque sa clé publique est configurée. Il analyse des signaux techniques pour distinguer les visiteurs humains des robots. Les noms et durées de cookies ou jetons éventuels dépendent de la configuration Cloudflare et doivent être confirmés dans le compte IAM.",
             "Le mode d’aperçu Next.js utilise un cookie technique réservé aux éditeurs autorisés. Il ne concerne pas la navigation publique ordinaire.",
             "Vercel et les infrastructures réseau peuvent traiter des journaux techniques nécessaires à la livraison et à la sécurité du site.",
+            "Le cookie iam_cookie_consent et l’enregistrement local associé mémorisent les catégories choisies pendant 180 jours. Ils sont strictement nécessaires au respect durable de la décision du visiteur.",
           ],
           links: [
             {
@@ -610,7 +610,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           title: "Catégories actuellement actives",
           bullets: [
             "Nécessaires : actifs uniquement lorsque requis pour la sécurité, l’édition autorisée ou la fourniture du site.",
-            "Préférences : inactifs.",
+            "Préférences de consentement : actives après le premier choix afin de ne pas redemander la décision à chaque visite.",
             "Statistiques : inactifs.",
             "Marketing : inactifs.",
           ],
@@ -619,8 +619,8 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           id: "gestion",
           title: "Gérer mes cookies",
           paragraphs: [
-            "Aucun choix relatif à des cookies optionnels n’est actuellement enregistré, car aucun cookie optionnel n’est chargé. Vous pouvez supprimer ou bloquer les cookies depuis les paramètres de votre navigateur ; certaines fonctions de sécurité ou d’aperçu peuvent alors ne plus fonctionner.",
-            "Si un service statistique, marketing ou un contenu tiers soumis au consentement est ajouté, il devra rester bloqué avant le choix de l’utilisateur. Le site devra alors proposer Tout accepter, Tout refuser et Personnaliser, avec un accès permanent aux préférences.",
+            "Le bandeau permet de tout accepter, de tout refuser ou de personnaliser les catégories optionnelles. Le refus est aussi simple que l’acceptation et aucun choix n’est présélectionné.",
+            "Vous pouvez rouvrir le panneau à tout moment avec le lien Gérer mes cookies situé dans le pied de page. La suppression des données du navigateur réinitialise la préférence et fera réapparaître le bandeau.",
           ],
           notice:
             "Configuration exacte de Turnstile, durées techniques et éventuelle prévalidation Cloudflare : " +
@@ -648,7 +648,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           title: "Website audit result",
           paragraphs: [
             "No Google Analytics, Google Tag Manager, Meta Pixel, advertising tool, third-party video player, interactive map or social widget was found in the audited public code.",
-            "No first-party statistics, preference or marketing cookie is currently configured. A banner inviting acceptance of non-existent categories would therefore be misleading and is not displayed.",
+            "No first-party analytics or advertising cookie is currently configured. The banner nevertheless allows visitors to set preferences in advance and blocks every future optional category by default.",
           ],
         },
         {
@@ -658,6 +658,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Cloudflare Turnstile loads only on pages containing a form when its public key is configured. It analyses technical signals to distinguish people from bots. Any cookie or token names and durations depend on Cloudflare configuration and must be confirmed in the IAM account.",
             "Next.js draft mode uses a technical cookie reserved for authorised editors. It does not concern ordinary public browsing.",
             "Vercel and network infrastructure may process technical logs required to deliver and secure the website.",
+            "The iam_cookie_consent cookie and its related local record store selected categories for 180 days. They are strictly necessary to respect the visitor’s decision over time.",
           ],
           links: [
             {
@@ -671,7 +672,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           title: "Categories currently active",
           bullets: [
             "Necessary: active only where required for security, authorised editing or website delivery.",
-            "Preferences: inactive.",
+            "Consent preferences: active after the first choice so that visitors are not asked again on every visit.",
             "Statistics: inactive.",
             "Marketing: inactive.",
           ],
@@ -680,8 +681,8 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           id: "gestion",
           title: "Manage my cookies",
           paragraphs: [
-            "No optional-cookie choice is currently stored because no optional cookie is loaded. You can remove or block cookies in your browser settings; some security or preview functions may then stop working.",
-            "If statistics, marketing or consent-controlled third-party content is added, it must remain blocked until the user chooses. The website must then offer Accept all, Reject all and Customise, with permanent access to preferences.",
+            "The banner lets you accept all, reject all or customise optional categories. Refusal is as easy as acceptance and no optional choice is preselected.",
+            "You can reopen the panel at any time using the Manage my cookies link in the footer. Clearing browser data resets the preference and makes the banner appear again.",
           ],
           notice:
             "Exact Turnstile configuration, technical durations and possible Cloudflare pre-clearance: " +

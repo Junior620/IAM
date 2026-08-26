@@ -20,7 +20,7 @@ const content = {
     eyebrow: "À propos de nous",
     title: "À propos de l’Institut Africain du Médicament",
     summary:
-      "L’Institut Africain du Médicament – Quality of Life (IAM-QoL) a été créé en 2008 avec l’approbation des ministères de la Santé du Cameroun et de la France, afin de former les professionnels de santé et d’informer le grand public sur les enjeux pharmaceutiques et les innovations du secteur médical.",
+      "L’Institut Africain du Médicament - Quality of Life (IAM-QoL) a été créé en 2008 avec l’approbation des ministères de la Santé du Cameroun et de la France, afin de former les professionnels de santé et d’informer le grand public sur les enjeux pharmaceutiques et les innovations du secteur médical.",
     introEyebrow: "Notre raison d’être",
     introTitle:
       "Une approche africaine du médicament, pensée dans toute sa chaîne de valeur.",
@@ -142,7 +142,7 @@ const content = {
     eyebrow: "About us",
     title: "About the African Institute of Medicine",
     summary:
-      "The African Institute of Medicine – Quality of Life (IAM-QoL) was established in 2008 with the approval of the Cameroonian and French ministries of health, to train health professionals and inform the public about pharmaceutical issues and innovations in the medical sector.",
+      "The African Institute of Medicine - Quality of Life (IAM-QoL) was established in 2008 with the approval of the Cameroonian and French ministries of health, to train health professionals and inform the public about pharmaceutical issues and innovations in the medical sector.",
     introEyebrow: "Our purpose",
     introTitle:
       "An African approach to medicine across its entire value chain.",

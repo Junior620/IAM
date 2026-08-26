@@ -63,7 +63,7 @@ export default async function MontrealPage({
             : "Cette page est contrôlée par les paramètres institutionnels dans Sanity."}
         </p>
         {preview && !settings?.montrealEnabled ? (
-          <p className="notice">Preview only — the public page is disabled.</p>
+          <p className="notice">Preview only. The public page is disabled.</p>
         ) : null}
       </div>
     </main>
