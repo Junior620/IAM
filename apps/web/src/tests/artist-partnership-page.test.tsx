@@ -35,8 +35,12 @@ describe("ArtistPartnershipPage", () => {
     ).toHaveAttribute("href", "mailto:info@annasnijder.com");
     expect(
       screen.getByRole("img", {
-        name: /Emplacement réservé aux visuels officiels/,
+        name: "Portrait provisoire d’une artiste dans son atelier de peinture",
       }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Visuel provisoire")).toBeInTheDocument();
+    expect(
+      screen.getByText("À remplacer par le portrait officiel d’Anna Snijder"),
     ).toBeInTheDocument();
   });
 
@@ -54,5 +58,6 @@ describe("ArtistPartnershipPage", () => {
         name: "Discover the African Institute of Medicine",
       }),
     ).toHaveAttribute("href", "/en/institut/a-propos");
+    expect(screen.getByText("Temporary visual")).toBeInTheDocument();
   });
 });

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -30,8 +31,10 @@ const content = {
       "Une collaboration où la création artistique contribue à soutenir la mission scientifique et institutionnelle de l’IAM.",
     discover: "Découvrir son travail",
     engagementCta: "Voir son engagement",
-    mediaLabel: "Emplacement réservé aux visuels officiels",
-    mediaNote: "Portrait et œuvres à venir",
+    mediaStatus: "Visuel provisoire",
+    mediaLabel: "Portrait de démonstration généré par IA",
+    mediaNote: "À remplacer par le portrait officiel d’Anna Snijder",
+    mediaAlt: "Portrait provisoire d’une artiste dans son atelier de peinture",
     introEyebrow: "Présentation de l’artiste",
     introTitle:
       "Une peinture abstraite guidée par ce qui demeure sous la surface.",
@@ -96,8 +99,10 @@ const content = {
       "A collaboration in which artistic creation helps support IAM’s scientific and institutional mission.",
     discover: "Discover her work",
     engagementCta: "Explore her commitment",
-    mediaLabel: "Reserved for official visual assets",
-    mediaNote: "Portrait and artworks to come",
+    mediaStatus: "Temporary visual",
+    mediaLabel: "AI-generated demonstration portrait",
+    mediaNote: "To be replaced with Anna Snijder’s official portrait",
+    mediaAlt: "Temporary portrait of an artist in her painting studio",
     introEyebrow: "Introducing the artist",
     introTitle: "Abstract painting guided by what remains beneath the surface.",
     intro:
@@ -220,18 +225,22 @@ export function ArtistPartnershipPage({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <div
-              className="artist-hero__media"
-              role="img"
-              aria-label={`${t.mediaLabel}. ${t.mediaNote}.`}
-            >
-              <span className="artist-hero__initials">AS</span>
-              <div>
+            <figure className="artist-hero__media">
+              <Image
+                className="artist-hero__portrait"
+                src="/images/partners/anna-snijder-portrait-placeholder.png"
+                alt={t.mediaAlt}
+                fill
+                priority
+                sizes="(max-width: 580px) 100vw, (max-width: 900px) 560px, 38vw"
+              />
+              <span className="artist-hero__status">{t.mediaStatus}</span>
+              <figcaption>
                 <Palette aria-hidden="true" />
                 <strong>{t.mediaLabel}</strong>
                 <small>{t.mediaNote}</small>
-              </div>
-            </div>
+              </figcaption>
+            </figure>
           </div>
         </Container>
       </section>
