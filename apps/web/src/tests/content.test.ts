@@ -27,5 +27,13 @@ describe("localised content contracts", () => {
     expect(getPageEntry("/institut/mission-vision")?.fr.eyebrow).toBe(
       "Mission & vision",
     );
+    expect(getPageEntry("/partenariats/anna-snijder")?.en.eyebrow).toBe(
+      "Artistic collaboration",
+    );
+    expect(
+      searchIndex("fr").some(
+        (item) => item.path === "/partenariats/anna-snijder",
+      ),
+    ).toBe(true);
   });
 });

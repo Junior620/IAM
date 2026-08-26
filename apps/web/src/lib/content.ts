@@ -13,6 +13,7 @@ import {
   type LucideIcon,
   Microscope,
   PackageSearch,
+  Palette,
   RadioTower,
   Scale,
   ShieldCheck,
@@ -826,6 +827,38 @@ export const pageEntries: PageEntry[] = [
         "Industry",
         "Foundations",
         "Corporate philanthropy",
+      ],
+    },
+  },
+  {
+    path: "/partenariats/anna-snijder",
+    icon: Palette,
+    fr: {
+      eyebrow: "Collaboration artistique",
+      title: "Anna Snijder — Artiste plasticienne internationale",
+      summary:
+        "Une collaboration entre création artistique, santé et impact social au service de la mission de l’IAM.",
+      intro:
+        "Anna Snijder soutient l’Institut Africain du Médicament en reversant une part fixe du produit de la vente de ses œuvres et commandes artistiques.",
+      bullets: [
+        "Peinture abstraite",
+        "Art et responsabilité sociale",
+        "Soutien à la mission de l’IAM",
+        "Représentation internationale",
+      ],
+    },
+    en: {
+      eyebrow: "Artistic collaboration",
+      title: "Anna Snijder — International visual artist",
+      summary:
+        "A collaboration connecting artistic creation, health and social impact in support of IAM’s mission.",
+      intro:
+        "Anna Snijder supports the African Institute of Medicine by donating a fixed share of the proceeds from her artworks and commissions.",
+      bullets: [
+        "Abstract painting",
+        "Art and social responsibility",
+        "Support for IAM’s mission",
+        "International representation",
       ],
     },
   },

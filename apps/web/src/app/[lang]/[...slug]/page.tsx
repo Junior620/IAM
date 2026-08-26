@@ -9,6 +9,7 @@ import {
 } from "@/components/content-template";
 import { AboutPage } from "@/components/about-page";
 import { AcademyPage } from "@/components/academy-page";
+import { ArtistPartnershipPage } from "@/components/artist-partnership-page";
 import { GalleryPage } from "@/components/gallery-page";
 import { MissionVisionPage } from "@/components/mission-vision-page";
 import { ServicesPage } from "@/components/services-page";
@@ -118,9 +119,53 @@ export async function generateMetadata({
     (locale === "fr"
       ? "Contenu institutionnel, scientifique et pharmaceutique de l’IAM."
       : "Institutional, scientific and pharmaceutical information from IAM.");
+  const isArtistPartnership = result.path === "/partenariats/anna-snijder";
   return {
     title,
     description,
+    ...(isArtistPartnership
+      ? {
+          keywords:
+            locale === "fr"
+              ? [
+                  "Anna Snijder",
+                  "artiste plasticienne internationale",
+                  "art et santé",
+                  "Institut Africain du Médicament",
+                  "mécénat artistique",
+                ]
+              : [
+                  "Anna Snijder",
+                  "international visual artist",
+                  "art and health",
+                  "African Institute of Medicine",
+                  "art philanthropy",
+                ],
+          openGraph: {
+            type: "article" as const,
+            title,
+            description,
+            url: result.canonical,
+            images: [
+              {
+                url: "/og.png",
+                width: 1200,
+                height: 630,
+                alt:
+                  locale === "fr"
+                    ? "Collaboration entre Anna Snijder et l’Institut Africain du Médicament"
+                    : "Collaboration between Anna Snijder and the African Institute of Medicine",
+              },
+            ],
+          },
+          twitter: {
+            card: "summary_large_image" as const,
+            title,
+            description,
+            images: ["/og.png"],
+          },
+        }
+      : {}),
     alternates: {
       canonical: result.canonical,
       languages: {
@@ -149,6 +194,8 @@ export default async function Page({
   if (result.path === "/academie") return <AcademyPage locale={locale} />;
   if (result.path === "/actualites-medias/galerie")
     return <GalleryPage locale={locale} />;
+  if (result.path === "/partenariats/anna-snijder")
+    return <ArtistPartnershipPage locale={locale} />;
   if (result.entry) {
     const formType = typeof query.type === "string" ? query.type : "contact";
     return (

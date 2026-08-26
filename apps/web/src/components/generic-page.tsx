@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BadgeCheck } from "lucide-react";
+import { BadgeCheck, Palette } from "lucide-react";
 import type { Locale, PageEntry } from "@/lib/content";
 import { copy, localizePath, pillars, programmes } from "@/lib/content";
 import { ContactForm } from "./contact-form";
@@ -108,6 +108,34 @@ export function GenericPage({
                     ? "L’Institut Africain du Médicament est présenté comme une organisation distincte de l’Agence africaine du médicament créée par traité de l’Union africaine. Aucun lien institutionnel n’est présumé."
                     : "The African Institute of Medicine is presented as an organisation distinct from the African Medicines Agency established by African Union treaty. No institutional link is assumed."}
                 </p>
+              </aside>
+            )}
+            {entry.path === "/partenariats" && (
+              <aside className="partnership-feature">
+                <div className="partnership-feature__icon">
+                  <Palette aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="eyebrow">
+                    {locale === "fr"
+                      ? "Collaboration artistique"
+                      : "Artistic collaboration"}
+                  </p>
+                  <h2>Anna Snijder × IAM</h2>
+                  <p>
+                    {locale === "fr"
+                      ? "Découvrir une collaboration qui relie création artistique, santé et impact social."
+                      : "Discover a collaboration connecting artistic creation, health and social impact."}
+                  </p>
+                  <ButtonLink
+                    href={localizePath(locale, "/partenariats/anna-snijder")}
+                    variant="secondary"
+                  >
+                    {locale === "fr"
+                      ? "Découvrir la collaboration"
+                      : "Discover the collaboration"}
+                  </ButtonLink>
+                </div>
               </aside>
             )}
           </article>

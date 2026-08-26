@@ -255,9 +255,15 @@ export function Header({ locale }: { locale: Locale }) {
                   {item[locale]}
                 </Link>
               ))}
-            <Link href={localizePath(locale, "/partenariats")}>
-              {t.hero.partner}
-            </Link>
+            <div className="mobile-menu__group">
+              <span>{locale === "fr" ? "Partenariats" : "Partnerships"}</span>
+              <Link href={localizePath(locale, "/partenariats")}>
+                {t.hero.partner}
+              </Link>
+              <Link href={localizePath(locale, "/partenariats/anna-snijder")}>
+                Anna Snijder × IAM
+              </Link>
+            </div>
             <Link href={localizePath(locale, "/contact")}>
               {t.utility.contact}
             </Link>
@@ -356,6 +362,9 @@ export function Footer({ locale }: { locale: Locale }) {
             </Link>
             <Link href={localizePath(locale, "/partenariats")}>
               {t.hero.partner}
+            </Link>
+            <Link href={localizePath(locale, "/partenariats/anna-snijder")}>
+              Anna Snijder × IAM
             </Link>
             <Link href={localizePath(locale, "/contact")}>
               {t.utility.contact}
