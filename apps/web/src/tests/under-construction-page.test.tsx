@@ -59,4 +59,17 @@ describe("UnderConstructionPage", () => {
     expect(screen.getByText("Actualités en préparation")).toBeInTheDocument();
     expect(screen.getByText("Préparation éditoriale")).toBeInTheDocument();
   });
+
+  it("presents the newsletter page with dedicated wording", () => {
+    render(<UnderConstructionPage locale="fr" page="newsletter" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: "Notre newsletter sera bientôt disponible.",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Préférences sécurisées")).toBeInTheDocument();
+    expect(screen.getByText("Préparation du service")).toBeInTheDocument();
+  });
 });

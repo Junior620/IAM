@@ -112,6 +112,10 @@ function isNewsMediaPagePublished() {
   return process.env.NEWS_MEDIA_PAGE_ENABLED === "true";
 }
 
+function isNewsletterPagePublished() {
+  return process.env.NEWSLETTER_PAGE_ENABLED === "true";
+}
+
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/[...slug]">): Promise<Metadata> {
@@ -150,6 +154,8 @@ export async function generateMetadata({
     result.path === "/participer" && !isParticipatePagePublished();
   const isNewsMediaPagePending =
     result.path === "/actualites-medias" && !isNewsMediaPagePublished();
+  const isNewsletterPagePending =
+    result.path === "/newsletter" && !isNewsletterPagePublished();
   return {
     title,
     description,
@@ -205,7 +211,8 @@ export async function generateMetadata({
     },
     ...(isInstitutePagePending ||
     isParticipatePagePending ||
-    isNewsMediaPagePending
+    isNewsMediaPagePending ||
+    isNewsletterPagePending
       ? { robots: { index: false, follow: true } }
       : {}),
   };
@@ -222,6 +229,8 @@ export default async function Page({
   if (isLegalPagePath(result.path)) {
     return <LegalPage locale={locale} path={result.path} />;
   }
+  if (result.path === "/newsletter" && !isNewsletterPagePublished())
+    return <UnderConstructionPage locale={locale} page="newsletter" />;
   if (result.path === "/newsletter") return <NewsletterPage locale={locale} />;
   if (result.path === "/institut/a-propos")
     return <AboutPage locale={locale} />;

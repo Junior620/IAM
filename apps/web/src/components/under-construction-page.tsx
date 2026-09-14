@@ -9,7 +9,7 @@ import {
 import { localizePath, type Locale } from "@/lib/content";
 import { ButtonLink, Container } from "./ui";
 
-type PendingPage = "institute" | "participate" | "media";
+type PendingPage = "institute" | "participate" | "media" | "newsletter";
 
 const content = {
   institute: {
@@ -126,6 +126,46 @@ const content = {
         ["News in preparation", FileCheck2],
         ["Sources being verified", ShieldCheck],
         ["Publication forthcoming", Clock3],
+      ],
+      homeAction: "Return home",
+      contactAction: "Contact us",
+      note: "Thank you for your patience.",
+    },
+  },
+  newsletter: {
+    fr: {
+      home: "Accueil",
+      breadcrumbLabel: "Fil d’Ariane",
+      eyebrow: "Newsletter IAM",
+      status: "Finalisation en cours",
+      title: "Notre newsletter sera bientôt disponible.",
+      summary:
+        "Nous préparons un espace d’inscription fiable et respectueux de vos préférences. Vous pourrez bientôt choisir les informations IAM que vous souhaitez recevoir.",
+      availability: "Inscription prochaine",
+      progress: "Préparation du service",
+      points: [
+        ["Contenus en préparation", FileCheck2],
+        ["Préférences sécurisées", ShieldCheck],
+        ["Ouverture à venir", Clock3],
+      ],
+      homeAction: "Retour à l’accueil",
+      contactAction: "Nous contacter",
+      note: "Merci pour votre patience.",
+    },
+    en: {
+      home: "Home",
+      breadcrumbLabel: "Breadcrumb",
+      eyebrow: "IAM newsletter",
+      status: "Finalisation in progress",
+      title: "Our newsletter will be available soon.",
+      summary:
+        "We are preparing a reliable subscription space that respects your preferences. Soon, you will be able to choose which IAM updates you wish to receive.",
+      availability: "Subscriptions coming soon",
+      progress: "Service preparation",
+      points: [
+        ["Content in preparation", FileCheck2],
+        ["Secure preferences", ShieldCheck],
+        ["Opening forthcoming", Clock3],
       ],
       homeAction: "Return home",
       contactAction: "Contact us",
