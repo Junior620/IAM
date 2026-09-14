@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import { localizePath } from "@/lib/content";
+import { StructuredData } from "@/components/structured-data";
+import { SITE_URL } from "@/lib/seo";
 import { Container } from "./ui";
 
 const artistSite = "https://www.annasnijder.com";
@@ -157,9 +159,6 @@ const content = {
 
 export function ArtistPartnershipPage({ locale }: { locale: Locale }) {
   const t = content[locale];
-  const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ).replace(/\/$/, "");
   const icons = [Sparkles, ShieldCheck, Layers3, HeartHandshake];
   const collectionIcons = [Palette, Building2, Landmark, ShieldCheck];
   const structuredData = {
@@ -175,18 +174,13 @@ export function ArtistPartnershipPage({ locale }: { locale: Locale }) {
     affiliation: {
       "@type": "Organization",
       name: "Institut Africain du Médicament",
-      url: siteUrl,
+      url: SITE_URL,
     },
   };
 
   return (
     <main id="contenu" className="artist-partnership">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-        }}
-      />
+      <StructuredData data={structuredData} />
 
       <section className="artist-hero">
         <Container>

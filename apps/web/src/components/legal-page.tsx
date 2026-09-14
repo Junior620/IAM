@@ -3,7 +3,6 @@ import {
   Accessibility,
   Cookie as CookieIcon,
   FileCheck2,
-  FileText,
   Scale,
   ShieldCheck,
   Stethoscope,
@@ -1158,6 +1157,26 @@ export function LegalPage({
 }) {
   const document = documents[path][locale];
   const Icon = document.icon;
+  const isVerifiedText = (value: string) =>
+    !value.includes(incompleteFr) && !value.includes(incompleteEn);
+  const sections = document.sections
+    .map((section) => ({
+      ...section,
+      paragraphs: section.paragraphs?.filter(isVerifiedText),
+      bullets: section.bullets?.filter(isVerifiedText),
+      notice:
+        section.notice && isVerifiedText(section.notice)
+          ? section.notice
+          : undefined,
+    }))
+    .filter(
+      (section) =>
+        Boolean(section.paragraphs?.length) ||
+        Boolean(section.bullets?.length) ||
+        Boolean(section.links?.length) ||
+        Boolean(section.notice),
+    );
+  const updatedIso = path === "/confidentialite" ? "2026-09-04" : "2026-08-26";
   return (
     <main id="contenu" className="legal-page">
       <section className="legal-hero">
@@ -1176,7 +1195,7 @@ export function LegalPage({
               <p>{document.summary}</p>
               <p className="legal-updated">
                 {locale === "fr" ? "Dernière mise à jour" : "Last updated"} :{" "}
-                <time dateTime="2026-08-26">{document.updated}</time>
+                <time dateTime={updatedIso}>{document.updated}</time>
               </p>
             </div>
             <div className="legal-hero__icon" aria-hidden="true">
@@ -1195,7 +1214,7 @@ export function LegalPage({
           >
             <strong>{locale === "fr" ? "Sommaire" : "Contents"}</strong>
             <ol>
-              {document.sections.map((section) => (
+              {sections.map((section) => (
                 <li key={section.id}>
                   <a href={`#${section.id}`}>{section.title}</a>
                 </li>
@@ -1204,15 +1223,7 @@ export function LegalPage({
           </nav>
 
           <article className="legal-document">
-            <aside className="legal-transparency-note">
-              <FileText aria-hidden="true" />
-              <p>
-                {locale === "fr"
-                  ? "Les mentions « INFORMATION À COMPLÉTER » signalent une donnée qui n’a pas pu être vérifiée dans le projet. Elles doivent être remplacées uniquement après validation documentaire par l’IAM."
-                  : "‘INFORMATION TO BE COMPLETED’ identifies data that could not be verified in the project. It must only be replaced after documentary confirmation by IAM."}
-              </p>
-            </aside>
-            {document.sections.map((section) => (
+            {sections.map((section) => (
               <section
                 id={section.id}
                 key={section.id}

@@ -5,7 +5,15 @@ import { Inter, Source_Serif_4 } from "next/font/google";
 import { Footer, Header } from "@/components/header";
 import { CookieConsent } from "@/components/cookie-consent";
 import { AssistantChat } from "@/components/assistant-chat";
+import { StructuredData } from "@/components/structured-data";
 import { getLocaleFromLang } from "@/lib/content";
+import {
+  isIndexingEnabled,
+  organizationStructuredData,
+  SITE_NAME,
+  SITE_URL,
+  websiteStructuredData,
+} from "@/lib/seo";
 import { sanityConfigured } from "@/sanity/lib/client";
 import "../globals.css";
 
@@ -23,10 +31,8 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
-  title: { default: "Institut Africain du Médicament", template: "%s | IAM" },
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_NAME, template: "%s | IAM" },
   description:
     "Plateforme panafricaine de coopération pharmaceutique, scientifique et institutionnelle.",
   applicationName: "IAM",
@@ -56,7 +62,9 @@ export const metadata: Metadata = {
       "Faire progresser le médicament en Afrique, de la recherche à l’accès.",
     images: ["/og.png"],
   },
-  robots: { index: true, follow: true },
+  robots: isIndexingEnabled()
+    ? { index: true, follow: true }
+    : { index: false, follow: false, noarchive: true },
 };
 
 export function generateStaticParams() {
@@ -74,34 +82,9 @@ export default async function LocaleLayout({
     preview && sanityConfigured
       ? (await import("next-sanity/visual-editing")).VisualEditing
       : null;
-  const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ).replace(/\/$/, "");
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-        name: "Institut Africain du Médicament",
-        alternateName: "IAM",
-        url: siteUrl,
-        areaServed: "Africa",
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${siteUrl}/#website`,
-        url: siteUrl,
-        name: "Institut Africain du Médicament",
-        publisher: { "@id": `${siteUrl}/#organization` },
-        inLanguage: locale,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${siteUrl}${locale === "en" ? "/en" : ""}/recherche?q={search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
-      },
-    ],
+    "@graph": [organizationStructuredData(), websiteStructuredData(locale)],
   };
   return (
     <html
@@ -110,12 +93,7 @@ export default async function LocaleLayout({
       className={`${inter.variable} ${sourceSerif.variable}`}
     >
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-          }}
-        />
+        <StructuredData data={structuredData} />
         <Header locale={locale} />
         {children}
         <Footer locale={locale} />

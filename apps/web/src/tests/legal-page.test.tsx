@@ -14,15 +14,15 @@ describe("LegalPage", () => {
     expect(container.querySelector("#gestion")).toBeInTheDocument();
   });
 
-  it("identifies providers and unresolved information in the privacy policy", () => {
+  it("identifies providers without publishing unresolved placeholders", () => {
     render(<LegalPage locale="en" path="/confidentialite" />);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       "Privacy policy",
     );
     expect(
-      screen.getAllByText(/INFORMATION TO BE COMPLETED BY IAM/).length,
-    ).toBeGreaterThan(0);
+      screen.queryByText(/INFORMATION TO BE COMPLETED BY IAM/),
+    ).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Resend/ })).toHaveAttribute(
       "href",
       "https://resend.com/legal/dpa",

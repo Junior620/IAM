@@ -1,32 +1,22 @@
 import type { MetadataRoute } from "next";
-import { getSanityClient } from "@/sanity/lib/client";
-import { settingsQuery } from "@/sanity/lib/queries";
+import { isIndexingEnabled, SITE_URL } from "@/lib/seo";
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const base = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ).replace(/\/$/, "");
-  const disallow = ["/api/", "/studio/"];
-  const client = getSanityClient();
-  let montrealEnabled = false;
-  if (client) {
-    try {
-      montrealEnabled = Boolean(
-        (await client.fetch(settingsQuery))?.montrealEnabled,
-      );
-    } catch {
-      montrealEnabled = false;
-    }
+export default function robots(): MetadataRoute.Robots {
+  if (!isIndexingEnabled()) {
+    return {
+      rules: [{ userAgent: "*", disallow: "/" }],
+    };
   }
-  if (!montrealEnabled) disallow.push("/montreal", "/en/montreal");
+
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow,
+        disallow: ["/api/", "/studio/"],
       },
     ],
-    sitemap: `${base}/sitemap.xml`,
+    host: SITE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

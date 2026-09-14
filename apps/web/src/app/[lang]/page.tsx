@@ -8,18 +8,44 @@ export async function generateMetadata({
 }: PageProps<"/[lang]">): Promise<Metadata> {
   const locale = getLocaleFromLang((await params).lang);
   if (!locale) return {};
+  const title =
+    locale === "fr"
+      ? "Institut Africain du Médicament | Coopération pharmaceutique"
+      : "African Institute of Medicine | Pharmaceutical cooperation";
+  const description =
+    locale === "fr"
+      ? "L’IAM relie science, institutions et professionnels pour renforcer la coopération pharmaceutique, les compétences et l’accès au médicament en Afrique."
+      : "IAM connects science, institutions and professionals to strengthen pharmaceutical cooperation, skills and access to medicines in Africa.";
   return {
-    title:
-      locale === "fr"
-        ? "Faire progresser le médicament en Afrique"
-        : "Advancing medicine in Africa",
-    description:
-      locale === "fr"
-        ? "Plateforme panafricaine de coopération pharmaceutique, scientifique et institutionnelle."
-        : "A Pan-African platform for pharmaceutical, scientific and institutional cooperation.",
+    title: { absolute: title },
+    description,
     alternates: {
       canonical: locale === "fr" ? "/" : "/en",
       languages: { fr: "/", en: "/en", "x-default": "/" },
+    },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url: locale === "fr" ? "/" : "/en",
+      locale: locale === "fr" ? "fr_CM" : "en_US",
+      images: [
+        {
+          url: "/og.png",
+          width: 1200,
+          height: 630,
+          alt:
+            locale === "fr"
+              ? "Institut Africain du Médicament"
+              : "African Institute of Medicine",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/og.png"],
     },
   };
 }

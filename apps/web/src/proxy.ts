@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const PUBLIC_FILE = /\.[^/]+$/;
+const INTERNAL_LOCALE_HEADER = "x-iam-internal-locale";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -18,7 +19,10 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (pathname === "/fr" || pathname.startsWith("/fr/")) {
+  if (
+    (pathname === "/fr" || pathname.startsWith("/fr/")) &&
+    request.headers.get(INTERNAL_LOCALE_HEADER) !== "fr"
+  ) {
     const destination = pathname === "/fr" ? "/" : pathname.slice(3);
     return NextResponse.redirect(new URL(destination, request.url), 308);
   }
@@ -29,7 +33,11 @@ export function proxy(request: NextRequest) {
 
   const rewritten = request.nextUrl.clone();
   rewritten.pathname = `/fr${pathname === "/" ? "" : pathname}`;
-  return NextResponse.rewrite(rewritten);
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set(INTERNAL_LOCALE_HEADER, "fr");
+  return NextResponse.rewrite(rewritten, {
+    request: { headers: requestHeaders },
+  });
 }
 
 export const config = {

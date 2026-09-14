@@ -1,26 +1,36 @@
 import type { MetadataRoute } from "next";
-import { legalPagePaths } from "@/components/legal-page";
-import { pageEntries, pillars, programmes } from "@/lib/content";
+import { isIndexingEnabled, isPagePublished, SITE_URL } from "@/lib/seo";
 import { getSanityClient } from "@/sanity/lib/client";
 import { settingsQuery } from "@/sanity/lib/queries";
 
+const verifiedStaticPaths = [
+  "",
+  "/institut/a-propos",
+  "/institut/mission-vision",
+  "/institut/nos-services",
+  "/priorites",
+  "/academie",
+  "/actualites-medias/galerie",
+  "/partenariats",
+  "/partenariats/anna-snijder",
+  "/contact",
+] as const;
+
+const featureFlaggedPaths = [
+  "/institut",
+  "/participer",
+  "/actualites-medias",
+  "/newsletter",
+] as const;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ).replace(/\/$/, "");
-  const paths = new Set<string>([
-    "",
-    "/alertes",
-    "/recherche",
-    "/newsletter",
-    "/institut/a-propos",
-    "/institut/notre-approche",
-    "/actualites-medias/galerie",
-    ...legalPagePaths,
-    ...pageEntries.map((item) => item.path),
-    ...pillars.map((item) => `/priorites/${item.slug}`),
-    ...programmes.map((item) => item.path),
-  ]);
+  if (!isIndexingEnabled()) return [];
+
+  const paths = new Set<string>(verifiedStaticPaths);
+  for (const path of featureFlaggedPaths) {
+    if (isPagePublished(path)) paths.add(path);
+  }
+
   const client = getSanityClient();
   if (client) {
     try {
@@ -30,23 +40,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // A CMS outage must not block generation of the verified static sitemap.
     }
   }
-  const now = new Date();
   return [...paths].flatMap((path) => {
-    const fr = `${base}${path || "/"}`;
-    const en = `${base}/en${path}`;
+    const fr = `${SITE_URL}${path || "/"}`;
+    const en = `${SITE_URL}/en${path}`;
     const alternates = { languages: { fr, en, "x-default": fr } };
     return [
       {
         url: fr,
-        lastModified: now,
-        changeFrequency: path ? ("monthly" as const) : ("weekly" as const),
         priority: path ? 0.7 : 1,
         alternates,
       },
       {
         url: en,
-        lastModified: now,
-        changeFrequency: path ? ("monthly" as const) : ("weekly" as const),
         priority: path ? 0.7 : 1,
         alternates,
       },
