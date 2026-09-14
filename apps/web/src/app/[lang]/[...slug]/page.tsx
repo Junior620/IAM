@@ -13,6 +13,7 @@ import { ArtistPartnershipPage } from "@/components/artist-partnership-page";
 import { GalleryPage } from "@/components/gallery-page";
 import { MissionVisionPage } from "@/components/mission-vision-page";
 import { ServicesPage } from "@/components/services-page";
+import { UnderConstructionPage } from "@/components/under-construction-page";
 import {
   getLegalPageMetadata,
   isLegalPagePath,
@@ -99,6 +100,14 @@ function resolve(locale: Locale, slug: string[]) {
   return { path, entry, knownDetail, canonical: localizePath(locale, path) };
 }
 
+function isInstitutePagePublished() {
+  return process.env.INSTITUTE_PAGE_ENABLED === "true";
+}
+
+function isParticipatePagePublished() {
+  return process.env.PARTICIPATE_PAGE_ENABLED === "true";
+}
+
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/[...slug]">): Promise<Metadata> {
@@ -131,6 +140,10 @@ export async function generateMetadata({
       ? "Contenu institutionnel, scientifique et pharmaceutique de l’IAM."
       : "Institutional, scientific and pharmaceutical information from IAM.");
   const isArtistPartnership = result.path === "/partenariats/anna-snijder";
+  const isInstitutePagePending =
+    result.path === "/institut" && !isInstitutePagePublished();
+  const isParticipatePagePending =
+    result.path === "/participer" && !isParticipatePagePublished();
   return {
     title,
     description,
@@ -184,6 +197,9 @@ export async function generateMetadata({
         en: localizePath("en", result.path),
       },
     },
+    ...(isInstitutePagePending || isParticipatePagePending
+      ? { robots: { index: false, follow: true } }
+      : {}),
   };
 }
 
@@ -210,6 +226,10 @@ export default async function Page({
     return <GalleryPage locale={locale} />;
   if (result.path === "/partenariats/anna-snijder")
     return <ArtistPartnershipPage locale={locale} />;
+  if (result.path === "/institut" && !isInstitutePagePublished())
+    return <UnderConstructionPage locale={locale} />;
+  if (result.path === "/participer" && !isParticipatePagePublished())
+    return <UnderConstructionPage locale={locale} page="participate" />;
   if (result.entry) {
     const formType = typeof query.type === "string" ? query.type : "contact";
     return (

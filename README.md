@@ -69,6 +69,8 @@ séparément les parcours et l’accessibilité aux formats mobiles.
 
 L’Assistant IAM répond à partir d’une base documentaire locale et des contenus Sanity approuvés. Pour activer les réponses générées, définir `OPENAI_API_KEY` et `OPENAI_ASSISTANT_MODEL` dans les variables serveur Vercel. En production, Upstash doit aussi être configuré afin de limiter les requêtes et de maîtriser les coûts. Les appels utilisent l’API Responses avec `store: false`. Ne jamais préfixer la clé avec `NEXT_PUBLIC_`.
 
+Les pages `/institut` et `/participer` restent en mode construction tant que leurs variables respectives `INSTITUTE_PAGE_ENABLED` et `PARTICIPATE_PAGE_ENABLED` ne sont pas réglées sur `true`. Pour publier une page, modifier sa variable serveur dans Vercel puis redéployer le site.
+
 ## Sanity
 
 Renseigner `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`, `NEXT_PUBLIC_SANITY_PROJECT_ID` et les tokens nécessaires. Puis :
