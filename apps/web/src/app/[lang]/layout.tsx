@@ -4,6 +4,7 @@ import { draftMode } from "next/headers";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { Footer, Header } from "@/components/header";
 import { CookieConsent } from "@/components/cookie-consent";
+import { AssistantChat } from "@/components/assistant-chat";
 import { getLocaleFromLang } from "@/lib/content";
 import { sanityConfigured } from "@/sanity/lib/client";
 import "../globals.css";
@@ -118,6 +119,7 @@ export default async function LocaleLayout({
         <Header locale={locale} />
         {children}
         <Footer locale={locale} />
+        <AssistantChat locale={locale} />
         <CookieConsent locale={locale} />
         {VisualEditing ? <VisualEditing /> : null}
       </body>

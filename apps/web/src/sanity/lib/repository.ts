@@ -41,7 +41,11 @@ function toContentRecord(item: {
 }
 
 export class SanityContentRepository implements ContentRepository {
-  async search(query: string, locale: Locale): Promise<ContentRecord[]> {
+  async search(
+    query: string,
+    locale: Locale,
+    options?: { signal?: AbortSignal },
+  ): Promise<ContentRecord[]> {
     const client = getSanityClient();
     if (!client) return [];
     const results = await client.fetch<ApprovedSearchQueryResult>(
@@ -50,6 +54,7 @@ export class SanityContentRepository implements ContentRepository {
         locale,
         search: `*${query.replace(/[\[\]*]/g, "")}*`,
       },
+      options?.signal ? { signal: options.signal } : undefined,
     );
     return results.flatMap((item) => {
       const record = toContentRecord(item);

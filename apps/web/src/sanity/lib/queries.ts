@@ -15,7 +15,9 @@ export const approvedSearchQuery = defineQuery(`*[
   "id": _id,
   "locale": language,
   "slug": slug.current,
+  "kind": _type,
   title,
+  "summary": coalesce(summary, excerpt),
   editorialStatus,
   verificationStatus,
   "sourceUrl": sources[0].url

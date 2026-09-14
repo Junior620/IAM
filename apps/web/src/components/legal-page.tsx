@@ -254,7 +254,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
       summary:
         "Une information transparente sur les données traitées par le site, leurs finalités, leurs destinataires et vos droits.",
       icon: ShieldCheck,
-      updated: "26 août 2026",
+      updated: "4 septembre 2026",
       sections: [
         {
           id: "portee",
@@ -279,14 +279,15 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Sécurité : adresse IP ou empreinte pseudonymisée, résultat du contrôle anti-robot et données techniques minimales nécessaires à la prévention des abus.",
             "Navigation : journaux techniques susceptibles d’être produits par l’hébergeur ; aucun outil d’analytics ou pixel marketing n’a été détecté dans le code audité.",
             "Recherche interne : les mots saisis peuvent apparaître dans l’URL et les journaux techniques ; n’y saisissez aucune donnée personnelle ou médicale.",
+            "Assistant IAM : langue, question et maximum de huit messages récents transmis volontairement. La conversation n’est pas enregistrée dans une base de données par le site.",
           ],
         },
         {
           id: "sante",
           title: "Données de santé et données sensibles",
           paragraphs: [
-            "Les formulaires publics ne sont pas conçus pour recueillir des symptômes, diagnostics, traitements, médicaments utilisés, résultats médicaux, données génétiques, biométriques ou identifiants de patients.",
-            "Ne transmettez aucune donnée de santé, information sur un effet indésirable, donnée de patient ni situation urgente par ces formulaires. Si une telle information est reçue accidentellement, l’IAM doit appliquer une procédure de tri, d’accès restreint et de suppression ou d’orientation appropriée à définir.",
+            "Les formulaires publics et l’Assistant IAM ne sont pas conçus pour recueillir des symptômes, diagnostics, traitements, médicaments utilisés, résultats médicaux, données génétiques, biométriques ou identifiants de patients.",
+            "Ne transmettez aucune donnée de santé, information sur un effet indésirable, donnée de patient ni situation urgente par ces interfaces. L’assistant bloque localement les demandes médicales personnelles identifiables avant tout appel à un fournisseur d’intelligence artificielle.",
           ],
           notice:
             "Ce site ne met actuellement à disposition aucun parcours de pharmacovigilance et ne doit pas être utilisé pour un signalement médical urgent.",
@@ -297,6 +298,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           bullets: [
             "Répondre aux demandes et assurer leur suivi : mesures précontractuelles, mission institutionnelle ou intérêt légitime selon le contexte. Cette qualification juridique reste à valider.",
             "Envoyer la newsletter sélectionnée : consentement explicite, confirmé par double opt-in et retirable à tout moment.",
+            "Répondre aux questions documentaires sur l’IAM et orienter vers les contenus du site : action volontaire du visiteur et intérêt légitime lié à l’information institutionnelle, sous réserve de validation juridique.",
             "Sécuriser le site, prévenir le spam et limiter les abus : intérêt légitime et sécurité du service, sous réserve du droit applicable.",
             "Respecter les obligations légales ou réglementaires applicables à l’IAM.",
           ],
@@ -313,6 +315,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Upstash : limitation de débit, données temporaires d’inscription et jetons de préférences.",
             "Cloudflare Turnstile : contrôle anti-robot sur les formulaires.",
             "Sanity : contenu éditorial public et médias ; les messages des formulaires ne sont pas stockés dans Sanity.",
+            "OpenAI : génération optionnelle des réponses de l’Assistant IAM uniquement lorsque le service est configuré. Sans configuration, l’assistant utilise exclusivement sa base documentaire locale.",
           ],
           links: [
             {
@@ -335,6 +338,10 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
               label: "Documentation Cloudflare Turnstile",
               href: "https://developers.cloudflare.com/turnstile/",
             },
+            {
+              label: "OpenAI, contrôles et conservation des données API",
+              href: "https://developers.openai.com/api/docs/guides/your-data",
+            },
           ],
         },
         {
@@ -344,6 +351,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Inscription newsletter non confirmée : 24 heures dans Upstash.",
             "Jeton de gestion des préférences : 180 jours dans Upstash.",
             "Contact newsletter confirmé : jusqu’au désabonnement ou à la suppression nécessaire, sous réserve de la politique de conservation à formaliser.",
+            "Conversation avec l’Assistant IAM : conservée uniquement dans la mémoire de la page ouverte et effacée au rechargement. Lorsque OpenAI est configuré, le paramètre store est désactivé ; les journaux de contrôle des abus du fournisseur peuvent néanmoins être conservés jusqu’à 30 jours par défaut selon sa documentation.",
             "Messages de contact, copies dans les boîtes e-mail et journaux des fournisseurs : durées exactes " +
               incompleteFr,
           ],
@@ -412,7 +420,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
       summary:
         "Transparent information about the data processed by the website, its purposes, recipients and your rights.",
       icon: ShieldCheck,
-      updated: "26 August 2026",
+      updated: "4 September 2026",
       sections: [
         {
           id: "scope",
@@ -437,14 +445,15 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Security: IP address or pseudonymised fingerprint, anti-bot result and minimal technical data required to prevent abuse.",
             "Navigation: technical logs that may be produced by the hosting provider; no analytics tool or marketing pixel was found in the audited code.",
             "Internal search: entered words may appear in the URL and technical logs; do not enter personal or medical data.",
+            "IAM Assistant: language, question and no more than eight recent messages submitted voluntarily. The conversation is not stored in a database by the website.",
           ],
         },
         {
           id: "health-data",
           title: "Health and sensitive data",
           paragraphs: [
-            "Public forms are not designed to collect symptoms, diagnoses, treatments, medicines used, medical results, genetic or biometric data, or patient identifiers.",
-            "Do not send health data, adverse-event information, patient data or urgent situations through these forms. If such information is received accidentally, IAM must apply a restricted-access triage, deletion or appropriate referral procedure that is still to be defined.",
+            "Public forms and IAM Assistant are not designed to collect symptoms, diagnoses, treatments, medicines used, medical results, genetic or biometric data, or patient identifiers.",
+            "Do not send health data, adverse-event information, patient data or urgent situations through these interfaces. The assistant locally blocks identifiable personal medical requests before any call to an artificial-intelligence provider.",
           ],
           notice:
             "This website currently provides no pharmacovigilance reporting pathway and must not be used for urgent medical reporting.",
@@ -455,6 +464,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
           bullets: [
             "Responding to and following up requests: pre-contractual steps, institutional mission or legitimate interests depending on context. The legal qualification remains to be reviewed.",
             "Sending the selected newsletter: explicit consent confirmed by double opt-in and withdrawable at any time.",
+            "Answering documentary questions about IAM and directing visitors to website content: voluntary visitor action and legitimate interest in institutional information, subject to legal review.",
             "Securing the website, preventing spam and limiting abuse: legitimate interests and service security, subject to applicable law.",
             "Complying with legal or regulatory duties applicable to IAM.",
           ],
@@ -471,6 +481,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Upstash: rate limiting, temporary subscription data and preference tokens.",
             "Cloudflare Turnstile: anti-bot checks on forms.",
             "Sanity: public editorial content and media; form messages are not stored in Sanity.",
+            "OpenAI: optional generation of IAM Assistant answers only when the service is configured. Without configuration, the assistant uses its local documentary knowledge only.",
           ],
           links: [
             {
@@ -493,6 +504,10 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
               label: "Cloudflare Turnstile documentation",
               href: "https://developers.cloudflare.com/turnstile/",
             },
+            {
+              label: "OpenAI API data controls and retention",
+              href: "https://developers.openai.com/api/docs/guides/your-data",
+            },
           ],
         },
         {
@@ -502,6 +517,7 @@ const documents: Record<LegalPagePath, Record<Locale, LegalDocument>> = {
             "Unconfirmed newsletter subscription: 24 hours in Upstash.",
             "Preference-management token: 180 days in Upstash.",
             "Confirmed newsletter contact: until unsubscribe or necessary deletion, subject to a formal retention policy.",
+            "IAM Assistant conversation: retained only in the memory of the open page and cleared on reload. When OpenAI is configured, the store parameter is disabled; provider abuse-monitoring logs may nevertheless be retained for up to 30 days by default according to its documentation.",
             "Contact messages, mailbox copies and provider logs: exact periods " +
               incompleteEn,
           ],

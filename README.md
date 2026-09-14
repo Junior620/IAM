@@ -64,7 +64,10 @@ séparément les parcours et l’accessibilité aux formats mobiles.
 | Resend                          | Formulaires et newsletter          | Réponse `503`, aucune donnée envoyée                                           |
 | Upstash Redis                   | Limitation et jetons double opt-in | Service transactionnel indisponible en production                              |
 | Cloudflare Turnstile            | Anti-spam                          | Widget absent sans clé ; vérification obligatoire en production lorsqu’activée |
+| OpenAI                          | Assistant documentaire optionnel   | Réponses locales IAM, aucune donnée transmise à OpenAI                         |
 | Stripe / Paystack / Flutterwave | Paiements futurs                   | Adaptateur désactivé ; CTA vers le formulaire philanthropique                  |
+
+L’Assistant IAM répond à partir d’une base documentaire locale et des contenus Sanity approuvés. Pour activer les réponses générées, définir `OPENAI_API_KEY` et `OPENAI_ASSISTANT_MODEL` dans les variables serveur Vercel. En production, Upstash doit aussi être configuré afin de limiter les requêtes et de maîtriser les coûts. Les appels utilisent l’API Responses avec `store: false`. Ne jamais préfixer la clé avec `NEXT_PUBLIC_`.
 
 ## Sanity
 

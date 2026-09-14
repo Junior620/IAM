@@ -545,7 +545,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="services-field-actions section">
+      <section className="services-field-actions section" id="actions-terrain">
         <Container>
           <header className="services-field-actions__header">
             <div>

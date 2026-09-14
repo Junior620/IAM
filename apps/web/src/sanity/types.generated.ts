@@ -1421,16 +1421,383 @@ export type SettingsQueryResult = {
 
 // Source: ../web/src/sanity/lib/queries.ts
 // Variable: approvedSearchQuery
-// Query: *[  language == $locale &&  editorialStatus == "approved" &&  (!defined(verificationStatus) || verificationStatus == "verified") &&  [title, coalesce(excerpt, ""), coalesce(summary, "")] match $search][0...20]{  "id": _id,  "locale": language,  "slug": slug.current,  title,  editorialStatus,  verificationStatus,  "sourceUrl": sources[0].url}
-export type ApprovedSearchQueryResult = Array<{
-  id: string;
-  locale: "en" | "fr" | null;
-  slug: string | null;
-  title: string | null;
-  editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
-  verificationStatus: "archived" | "draft" | "verified" | null;
-  sourceUrl: string | null;
-}>;
+// Query: *[  language == $locale &&  editorialStatus == "approved" &&  (!defined(verificationStatus) || verificationStatus == "verified") &&  [title, coalesce(excerpt, ""), coalesce(summary, "")] match $search][0...20]{  "id": _id,  "locale": language,  "slug": slug.current,  "kind": _type,  title,  "summary": coalesce(summary, excerpt),  editorialStatus,  verificationStatus,  "sourceUrl": sources[0].url}
+export type ApprovedSearchQueryResult = Array<
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "alert";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "article";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "author";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "callForProjects";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "country";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "course";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "dataset";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "donorCampaign";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "event";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "falsifiedMedicineAlert";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "governanceMember";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "impactMetric";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "laboratory";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "location";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "mediaAsset";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "medicinalPlant";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "navigation";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "newsletterIssue";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "page";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "partner";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "pharmacovigilanceAlert";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "pillar";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "policyBrief";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "program";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "project";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "publication";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "report";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "researcher";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "scientificCouncilMember";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "shortageAlert";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "teamMember";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "testimonial";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "trainer";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+  | {
+      id: string;
+      locale: "en" | "fr" | null;
+      slug: string | null;
+      kind: "youthAmbassador";
+      title: string | null;
+      summary: string | null;
+      editorialStatus: "approved" | "archived" | "draft" | "inReview" | null;
+      verificationStatus: "archived" | "draft" | "verified" | null;
+      sourceUrl: string | null;
+    }
+>;
 
 // Source: ../web/src/sanity/lib/queries.ts
 // Variable: approvedBySlugQuery
@@ -1919,7 +2286,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "siteSettings"][0]{\n  montrealEnabled,\n  legalName,\n  contactEmail\n}': SettingsQueryResult;
-    '*[\n  language == $locale &&\n  editorialStatus == "approved" &&\n  (!defined(verificationStatus) || verificationStatus == "verified") &&\n  [title, coalesce(excerpt, ""), coalesce(summary, "")] match $search\n][0...20]{\n  "id": _id,\n  "locale": language,\n  "slug": slug.current,\n  title,\n  editorialStatus,\n  verificationStatus,\n  "sourceUrl": sources[0].url\n}': ApprovedSearchQueryResult;
+    '*[\n  language == $locale &&\n  editorialStatus == "approved" &&\n  (!defined(verificationStatus) || verificationStatus == "verified") &&\n  [title, coalesce(excerpt, ""), coalesce(summary, "")] match $search\n][0...20]{\n  "id": _id,\n  "locale": language,\n  "slug": slug.current,\n  "kind": _type,\n  title,\n  "summary": coalesce(summary, excerpt),\n  editorialStatus,\n  verificationStatus,\n  "sourceUrl": sources[0].url\n}': ApprovedSearchQueryResult;
     '*[\n  language == $locale &&\n  slug.current == $slug &&\n  editorialStatus == "approved" &&\n  (!defined(verificationStatus) || verificationStatus == "verified")\n][0]{\n  "id": _id,\n  "locale": language,\n  "slug": slug.current,\n  "kind": _type,\n  title,\n  "summary": excerpt,\n  body,\n  editorialStatus,\n  verificationStatus,\n  verifiedAt,\n  "sourceTitle": sources[0].title,\n  "sourceUrl": sources[0].url\n}': ApprovedBySlugQueryResult;
   }
 }
