@@ -46,4 +46,17 @@ describe("UnderConstructionPage", () => {
     expect(screen.getByText("Parcours en préparation")).toBeInTheDocument();
     expect(screen.getByText("Préparation des parcours")).toBeInTheDocument();
   });
+
+  it("presents the editorial page with dedicated wording", () => {
+    render(<UnderConstructionPage locale="fr" page="media" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: "Notre espace éditorial se prépare.",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Actualités en préparation")).toBeInTheDocument();
+    expect(screen.getByText("Préparation éditoriale")).toBeInTheDocument();
+  });
 });

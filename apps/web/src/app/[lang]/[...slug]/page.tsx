@@ -108,6 +108,10 @@ function isParticipatePagePublished() {
   return process.env.PARTICIPATE_PAGE_ENABLED === "true";
 }
 
+function isNewsMediaPagePublished() {
+  return process.env.NEWS_MEDIA_PAGE_ENABLED === "true";
+}
+
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/[...slug]">): Promise<Metadata> {
@@ -144,6 +148,8 @@ export async function generateMetadata({
     result.path === "/institut" && !isInstitutePagePublished();
   const isParticipatePagePending =
     result.path === "/participer" && !isParticipatePagePublished();
+  const isNewsMediaPagePending =
+    result.path === "/actualites-medias" && !isNewsMediaPagePublished();
   return {
     title,
     description,
@@ -197,7 +203,9 @@ export async function generateMetadata({
         en: localizePath("en", result.path),
       },
     },
-    ...(isInstitutePagePending || isParticipatePagePending
+    ...(isInstitutePagePending ||
+    isParticipatePagePending ||
+    isNewsMediaPagePending
       ? { robots: { index: false, follow: true } }
       : {}),
   };
@@ -230,6 +238,8 @@ export default async function Page({
     return <UnderConstructionPage locale={locale} />;
   if (result.path === "/participer" && !isParticipatePagePublished())
     return <UnderConstructionPage locale={locale} page="participate" />;
+  if (result.path === "/actualites-medias" && !isNewsMediaPagePublished())
+    return <UnderConstructionPage locale={locale} page="media" />;
   if (result.entry) {
     const formType = typeof query.type === "string" ? query.type : "contact";
     return (

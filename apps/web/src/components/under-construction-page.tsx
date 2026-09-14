@@ -9,7 +9,7 @@ import {
 import { localizePath, type Locale } from "@/lib/content";
 import { ButtonLink, Container } from "./ui";
 
-type PendingPage = "institute" | "participate";
+type PendingPage = "institute" | "participate" | "media";
 
 const content = {
   institute: {
@@ -54,43 +54,83 @@ const content = {
   },
   participate: {
     fr: {
-    home: "Accueil",
-    breadcrumbLabel: "Fil d’Ariane",
-    eyebrow: "Participer",
-    status: "Finalisation en cours",
-    title: "Votre espace de participation arrive bientôt.",
-    summary:
-      "Nous préparons des parcours clairs pour collaborer, proposer une initiative et contribuer aux actions de l’IAM. Cet espace sera publié après validation de ses modalités.",
-    availability: "Ouverture prochaine",
-    progress: "Préparation des parcours",
-    points: [
-      ["Parcours en préparation", FileCheck2],
-      ["Modalités en validation", ShieldCheck],
-      ["Accès prochainement", Clock3],
-    ],
-    homeAction: "Retour à l’accueil",
-    contactAction: "Nous contacter",
-    note: "Merci pour votre patience.",
-  },
+      home: "Accueil",
+      breadcrumbLabel: "Fil d’Ariane",
+      eyebrow: "Participer",
+      status: "Finalisation en cours",
+      title: "Votre espace de participation arrive bientôt.",
+      summary:
+        "Nous préparons des parcours clairs pour collaborer, proposer une initiative et contribuer aux actions de l’IAM. Cet espace sera publié après validation de ses modalités.",
+      availability: "Ouverture prochaine",
+      progress: "Préparation des parcours",
+      points: [
+        ["Parcours en préparation", FileCheck2],
+        ["Modalités en validation", ShieldCheck],
+        ["Accès prochainement", Clock3],
+      ],
+      homeAction: "Retour à l’accueil",
+      contactAction: "Nous contacter",
+      note: "Merci pour votre patience.",
+    },
     en: {
-    home: "Home",
-    breadcrumbLabel: "Breadcrumb",
-    eyebrow: "Get involved",
-    status: "Finalisation in progress",
-    title: "Your participation space is coming soon.",
-    summary:
-      "We are preparing clear pathways to collaborate, propose an initiative and contribute to IAM activities. This space will be published once its participation terms have been approved.",
-    availability: "Opening soon",
-    progress: "Participation pathways",
-    points: [
-      ["Pathways in preparation", FileCheck2],
-      ["Terms being validated", ShieldCheck],
-      ["Access coming soon", Clock3],
-    ],
-    homeAction: "Return home",
-    contactAction: "Contact us",
-    note: "Thank you for your patience.",
+      home: "Home",
+      breadcrumbLabel: "Breadcrumb",
+      eyebrow: "Get involved",
+      status: "Finalisation in progress",
+      title: "Your participation space is coming soon.",
+      summary:
+        "We are preparing clear pathways to collaborate, propose an initiative and contribute to IAM activities. This space will be published once its participation terms have been approved.",
+      availability: "Opening soon",
+      progress: "Participation pathways",
+      points: [
+        ["Pathways in preparation", FileCheck2],
+        ["Terms being validated", ShieldCheck],
+        ["Access coming soon", Clock3],
+      ],
+      homeAction: "Return home",
+      contactAction: "Contact us",
+      note: "Thank you for your patience.",
+    },
   },
+  media: {
+    fr: {
+      home: "Accueil",
+      breadcrumbLabel: "Fil d’Ariane",
+      eyebrow: "Actualités et médias",
+      status: "Finalisation en cours",
+      title: "Notre espace éditorial se prépare.",
+      summary:
+        "Nous organisons les actualités, communiqués, événements et ressources médias de l’IAM dans un espace clair et fiable. Sa publication interviendra après validation éditoriale.",
+      availability: "Publication prochaine",
+      progress: "Préparation éditoriale",
+      points: [
+        ["Actualités en préparation", FileCheck2],
+        ["Sources en vérification", ShieldCheck],
+        ["Mise en ligne à venir", Clock3],
+      ],
+      homeAction: "Retour à l’accueil",
+      contactAction: "Nous contacter",
+      note: "Merci pour votre patience.",
+    },
+    en: {
+      home: "Home",
+      breadcrumbLabel: "Breadcrumb",
+      eyebrow: "News and media",
+      status: "Finalisation in progress",
+      title: "Our editorial space is taking shape.",
+      summary:
+        "We are organising IAM news, press releases, events and media resources into a clear and reliable space. It will be published once editorial review is complete.",
+      availability: "Publishing soon",
+      progress: "Editorial preparation",
+      points: [
+        ["News in preparation", FileCheck2],
+        ["Sources being verified", ShieldCheck],
+        ["Publication forthcoming", Clock3],
+      ],
+      homeAction: "Return home",
+      contactAction: "Contact us",
+      note: "Thank you for your patience.",
+    },
   },
 } as const;
 
@@ -115,10 +155,16 @@ export function UnderConstructionPage({
           <span>{copy.eyebrow}</span>
         </nav>
 
-        <section className="construction-page__panel" aria-labelledby="construction-title">
+        <section
+          className="construction-page__panel"
+          aria-labelledby="construction-title"
+        >
           <div className="construction-page__content">
             <div className="construction-page__status">
-              <span className="construction-page__status-dot" aria-hidden="true" />
+              <span
+                className="construction-page__status-dot"
+                aria-hidden="true"
+              />
               {copy.status}
             </div>
             <p className="eyebrow">{copy.eyebrow}</p>
