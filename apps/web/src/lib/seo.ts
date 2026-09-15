@@ -175,9 +175,9 @@ export function socialImageUrl(environment: RuntimeEnvironment = process.env) {
     environment.VERCEL_PROJECT_PRODUCTION_URL ?? environment.VERCEL_URL;
   if (vercelHost) {
     const host = vercelHost.replace(/^https?:\/\//, "").replace(/\/$/, "");
-    return `https://${host}/og-share.png`;
+    return `https://${host}/og-share.png?v=20260915`;
   }
-  return `${SOCIAL_ASSET_FALLBACK_URL}/og-share.png`;
+  return `${SOCIAL_ASSET_FALLBACK_URL}/og-share.png?v=20260915`;
 }
 
 export function organizationStructuredData() {

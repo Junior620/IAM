@@ -35,9 +35,9 @@ describe("SEO configuration", () => {
       socialImageUrl({
         VERCEL_PROJECT_PRODUCTION_URL: "iam-web-blond.vercel.app",
       }),
-    ).toBe("https://iam-web-blond.vercel.app/og-share.png");
+    ).toBe("https://iam-web-blond.vercel.app/og-share.png?v=20260915");
     expect(socialImageUrl({})).toBe(
-      "https://iam-web-blond.vercel.app/og-share.png",
+      "https://iam-web-blond.vercel.app/og-share.png?v=20260915",
     );
   });
 
