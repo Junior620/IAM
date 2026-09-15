@@ -10,6 +10,7 @@ import { getLocaleFromLang } from "@/lib/content";
 import {
   isIndexingEnabled,
   organizationStructuredData,
+  socialImageUrl,
   SITE_NAME,
   SITE_URL,
   websiteStructuredData,
@@ -48,9 +49,10 @@ export const metadata: Metadata = {
       "Faire progresser le médicament en Afrique, de la recherche à l’accès.",
     images: [
       {
-        url: "/og.png",
+        url: socialImageUrl(),
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: "Institut Africain du Médicament, science, données et accès",
       },
     ],
@@ -60,7 +62,7 @@ export const metadata: Metadata = {
     title: "Institut Africain du Médicament",
     description:
       "Faire progresser le médicament en Afrique, de la recherche à l’accès.",
-    images: ["/og.png"],
+    images: [socialImageUrl()],
   },
   robots: isIndexingEnabled()
     ? { index: true, follow: true }

@@ -2,6 +2,7 @@ import type { Locale } from "@/lib/content";
 
 export const SITE_URL = "https://iam-afrique.org";
 export const SITE_NAME = "Institut Africain du Médicament";
+const SOCIAL_ASSET_FALLBACK_URL = "https://iam-web-blond.vercel.app";
 
 const staticPageSeo: Record<
   string,
@@ -167,6 +168,16 @@ export function isPagePublished(
 export function absoluteUrl(path = "/") {
   const normalized = path === "/" ? "" : `/${path.replace(/^\/+/, "")}`;
   return `${SITE_URL}${normalized}`;
+}
+
+export function socialImageUrl(environment: RuntimeEnvironment = process.env) {
+  const vercelHost =
+    environment.VERCEL_PROJECT_PRODUCTION_URL ?? environment.VERCEL_URL;
+  if (vercelHost) {
+    const host = vercelHost.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    return `https://${host}/og-share.png`;
+  }
+  return `${SOCIAL_ASSET_FALLBACK_URL}/og-share.png`;
 }
 
 export function organizationStructuredData() {

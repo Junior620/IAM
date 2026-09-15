@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HomePage } from "@/components/home-page";
 import { getLocaleFromLang } from "@/lib/content";
+import { socialImageUrl } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,6 +17,7 @@ export async function generateMetadata({
     locale === "fr"
       ? "L’IAM relie science, institutions et professionnels pour renforcer la coopération pharmaceutique, les compétences et l’accès au médicament en Afrique."
       : "IAM connects science, institutions and professionals to strengthen pharmaceutical cooperation, skills and access to medicines in Africa.";
+  const shareImage = socialImageUrl();
   return {
     title: { absolute: title },
     description,
@@ -31,9 +33,10 @@ export async function generateMetadata({
       locale: locale === "fr" ? "fr_CM" : "en_US",
       images: [
         {
-          url: "/og.png",
+          url: shareImage,
           width: 1200,
           height: 630,
+          type: "image/png",
           alt:
             locale === "fr"
               ? "Institut Africain du Médicament"
@@ -45,7 +48,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/og.png"],
+      images: [shareImage],
     },
   };
 }

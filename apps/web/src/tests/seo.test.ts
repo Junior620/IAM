@@ -7,6 +7,7 @@ import {
   isIndexingEnabled,
   isPagePublished,
   organizationStructuredData,
+  socialImageUrl,
   SITE_URL,
 } from "@/lib/seo";
 
@@ -30,6 +31,14 @@ describe("SEO configuration", () => {
       url: SITE_URL,
       name: "Institut Africain du Médicament",
     });
+    expect(
+      socialImageUrl({
+        VERCEL_PROJECT_PRODUCTION_URL: "iam-web-blond.vercel.app",
+      }),
+    ).toBe("https://iam-web-blond.vercel.app/og-share.png");
+    expect(socialImageUrl({})).toBe(
+      "https://iam-web-blond.vercel.app/og-share.png",
+    );
   });
 
   it("blocks indexing outside production and supports an explicit kill switch", () => {

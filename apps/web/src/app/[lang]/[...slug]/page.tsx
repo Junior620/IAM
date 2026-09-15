@@ -39,6 +39,7 @@ import {
   getStaticPageSeo,
   isIndexingEnabled,
   isPagePublished,
+  socialImageUrl,
 } from "@/lib/seo";
 import { SanityContentRepository } from "@/sanity/lib/repository";
 
@@ -214,6 +215,7 @@ export async function generateMetadata({
     result.entry || legalMetadata || result.knownDetail,
   );
   const openGraphLocale = locale === "fr" ? "fr_CM" : "en_US";
+  const shareImage = socialImageUrl();
   return {
     title,
     description,
@@ -243,9 +245,10 @@ export async function generateMetadata({
             locale: openGraphLocale,
             images: [
               {
-                url: "/og.png",
+                url: shareImage,
                 width: 1200,
                 height: 630,
+                type: "image/png",
                 alt:
                   locale === "fr"
                     ? "Collaboration entre Anna Snijder et l’Institut Africain du Médicament"
@@ -257,7 +260,7 @@ export async function generateMetadata({
             card: "summary_large_image" as const,
             title,
             description,
-            images: ["/og.png"],
+            images: [shareImage],
           },
         }
       : {}),
@@ -271,9 +274,10 @@ export async function generateMetadata({
             locale: openGraphLocale,
             images: [
               {
-                url: "/og.png",
+                url: shareImage,
                 width: 1200,
                 height: 630,
+                type: "image/png",
                 alt:
                   locale === "fr"
                     ? "Institut Africain du Médicament"
@@ -285,7 +289,7 @@ export async function generateMetadata({
             card: "summary_large_image" as const,
             title,
             description,
-            images: ["/og.png"],
+            images: [shareImage],
           },
         }
       : {}),
